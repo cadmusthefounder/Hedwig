@@ -37,7 +37,7 @@ class UserTest < ActiveSupport::TestCase
     refute another_user.valid?
   end
 
-    test "account_kit_id should be unique" do
+  test "account_kit_id should be unique" do
     @user = users(:yihang)
 
     another_user = User.new(name: "Foo", email: "Bar", account_kit_id: "123")
@@ -47,5 +47,11 @@ class UserTest < ActiveSupport::TestCase
     another_user.account_kit_id = @user.account_kit_id
 
     refute another_user.valid?
+  end
+
+  test "user should respond to sessions" do
+    @user = users(:yihang)
+
+    assert @user.respond_to?(:sessions)
   end
 end

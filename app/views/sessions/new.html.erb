@@ -1,0 +1,42 @@
+<h1>Login</h1>
+
+<%= form_tag do %>
+  <div class="form-group">
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+  </div>
+
+  <%= submit_tag :login %>
+<% end %>
+
+<script>
+$(document).on("turbolinks:load", function() {
+  $("form").submit(function(event) {
+    event.preventDefault();
+
+    var email = event.target.email.value;
+
+    AccountKit.login('EMAIL', {emailAddress: email}, function(response) {
+      if (response.status === "PARTIALLY_AUTHENTICATED") {
+        var form = document.createElement("form");
+        form.action = "<%= sessions_path %>";
+        form.method = "POST";
+
+        var authenticityTokenInput = document.createElement("input");
+        authenticityTokenInput.name = "authenticity_token";
+        authenticityTokenInput.value = response.state;
+        form.appendChild(authenticityTokenInput);
+
+        var codeInput = document.createElement("input");
+        codeInput.name = "code";
+        codeInput.value = response.code;
+        form.appendChild(codeInput);
+
+        $(form).submit();
+      } else {
+        // TODO error handling
+      }
+    });
+  });
+});
+</script>
