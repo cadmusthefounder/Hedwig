@@ -1,0 +1,14 @@
+@import "bootstrap-sprockets";
+@import "simplex/_variables";
+@import "bootstrap";
+@import "simplex/_bootswatch";
+@import "./**/*";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 33px;
+}
