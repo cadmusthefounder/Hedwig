@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+yihang:
+  name: yihang
+  email: yihang@example.com
+  account_kit_id: 123456
