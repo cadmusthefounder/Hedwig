@@ -12,3 +12,17 @@ body {
   margin: 0;
   padding: 33px;
 }
+
+.small-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.small-form {
+  flex-basis: 300px;
+  border: 1px solid $gray;
+  border-radius: $border-radius-base;
+  padding: 0 18px 18px 18px;
+}

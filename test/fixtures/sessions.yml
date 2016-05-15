@@ -3,3 +3,7 @@
 yihangs_session:
   user: yihang
   remember_token: 12345
+
+others_session:
+  user: other
+  remember_token: 54321

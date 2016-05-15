@@ -13,4 +13,8 @@ module UserAuthentication
   def logged_in?
     !current_user.nil?
   end
+
+  def ensure_logged_in
+    redirect_to new_session_path unless logged_in?
+  end
 end
