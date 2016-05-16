@@ -23,7 +23,9 @@ class SessionsController < ApplicationController
 
     cookies[:remember_token] = @session.remember_token
 
-    # TODO redirect to feed instead
+    # TODO redirect to feed for existing user
+
+    redirect_to update_profile_path if @user.name.nil?
   end
 
   # DELETE /sessions/1
