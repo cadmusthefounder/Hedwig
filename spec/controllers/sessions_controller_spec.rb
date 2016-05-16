@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, :type => :controller do
-  fixtures :all
-
   it "should get new" do
     get :new
     expect(response).to be_success

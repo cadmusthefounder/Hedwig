@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
-  fixtures :all
-
   before(:each) do
     @yihang = users(:yihang)
     @yihangs_session = sessions(:yihangs_session)

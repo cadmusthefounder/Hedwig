@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  fixtures :all
-
   it "email should be present" do
     @user = users(:yihang)
 
