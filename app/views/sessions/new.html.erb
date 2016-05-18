@@ -25,6 +25,8 @@ $(document).on("turbolinks:load", function() {
         var form = document.createElement("form");
         form.action = "<%= sessions_path %>";
         form.method = "POST";
+        form.style.display = "none";
+        document.body.appendChild(form);
 
         var authenticityTokenInput = document.createElement("input");
         authenticityTokenInput.name = "authenticity_token";
