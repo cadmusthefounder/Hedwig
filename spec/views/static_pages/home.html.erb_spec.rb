@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "static_pages/home.html.erb" do
   it "should have the correct title" do
