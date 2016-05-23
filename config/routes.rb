@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+
   get '/update_profile', to: 'users#edit', as: :update_profile
   patch '/update_profile', to: 'users#update'
   put '/update_profile', to: 'users#update'
