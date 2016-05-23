@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, :type => :controller do
+  before(:each) do
+    @original_account_kit = AccountKit
+  end
+
+  after(:each) do
+    AccountKit = @original_account_kit
+  end
+
   it "should get new" do
     get :new
     expect(response).to be_success
