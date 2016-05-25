@@ -1,0 +1,27 @@
+<% provide(:title, "New Task") %>
+
+<h1> New Task! </h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@task) do |f| %>
+      <%= f.label :from_address, "From Address" %>
+      <%= f.text_field :from_address %>
+
+      <%= f.label :from_postal_code, "From Postal Code" %>
+      <%= f.text_field :from_postal_code %>
+
+      <%= f.label :to_address, "To Address" %>
+      <%= f.text_field :to_address %>
+
+      <%= f.label :to_postal_code, "To Postal Code" %>
+      <%= f.text_field :to_postal_code %>
+
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+
+      <%= f.submit "Create my task!", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
