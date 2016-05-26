@@ -9,11 +9,6 @@ RSpec.describe SessionsController, :type => :controller do
     AccountKit = @original_account_kit
   end
 
-  it "should get new" do
-    get :new
-    expect(response).to be_success
-  end
-
   it "should create session" do
     @user = users(:yihang)
 
@@ -41,5 +36,15 @@ RSpec.describe SessionsController, :type => :controller do
     post :create, params: {code: "myawesomecode"}
 
     expect(response).to redirect_to(update_profile_path)
+  end
+
+  it "should delete destroy" do
+    session = sessions(:yihangs_session)
+    request.cookies[:remember_token] = session.remember_token
+
+    expect { delete :destroy }.to change { Session.count }.by(-1)
+
+    expect(response).to redirect_to root_path
+    expect(response.cookies[:remember_token]).to be_nil
   end
 end

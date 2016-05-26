@@ -11,17 +11,7 @@
     <%= render "layouts/shim" %>
 
     <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
-    <script>
-    AccountKit_OnInteractive = function() {
-      AccountKit.init(
-        {
-          appId: "<%= AccountKit.app_id %>",
-          state: "<%= form_authenticity_token %>",
-          version: "v1.0"
-        }
-      );
-    };
-    </script>
+
   </head>
 
   <body class="container">

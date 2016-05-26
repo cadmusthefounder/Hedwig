@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   patch '/update_profile', to: 'users#update'
   put '/update_profile', to: 'users#update'
   resources :sessions
+  delete '/sessions', to: 'sessions#destroy'
 end

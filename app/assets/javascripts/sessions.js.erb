@@ -1,0 +1,56 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
+
+AccountKit_OnInteractive = (function() {
+  var deferred = $.Deferred();
+  var promise = deferred.promise();
+
+  function AccountKit_OnInteractive() {
+    promise.then(function(formAuthenticityToken) {
+      AccountKit.init(
+        {
+          appId: "<%= AccountKit.app_id %>",
+          state: formAuthenticityToken,
+          version: "v1.0"
+        }
+      );
+    });
+  }
+
+  $(document).on('turbolinks:load', function() {
+    var formAuthenticityToken = $('meta[name=csrf-token]').attr('content');
+    deferred.resolve(formAuthenticityToken);
+
+    $('.login-button').click(function(event) {
+      event.preventDefault();
+
+      AccountKit.login('EMAIL', {emailAddress: ""}, function(response) {
+        if (response.status === "PARTIALLY_AUTHENTICATED") {
+          var form = document.createElement("form");
+          form.action = "<%= sessions_path %>";
+          form.method = "POST";
+          form.style.display = "none";
+          document.body.appendChild(form);
+
+          var authenticityTokenInput = document.createElement("input");
+          authenticityTokenInput.name = "authenticity_token";
+          authenticityTokenInput.value = response.state;
+          form.appendChild(authenticityTokenInput);
+
+          var codeInput = document.createElement("input");
+          codeInput.name = "code";
+          codeInput.value = response.code;
+          form.appendChild(codeInput);
+
+          $(form).submit();
+        } else {
+          // TODO error handling
+        }
+      });
+    });
+  });
+
+  return AccountKit_OnInteractive;
+})();

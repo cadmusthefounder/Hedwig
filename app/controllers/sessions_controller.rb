@@ -1,11 +1,4 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: :destroy
-
-  # GET /sessions/new
-  def new
-    @session = Session.new
-  end
-
   # POST /sessions
   # POST /sessions.json
   def create
@@ -28,22 +21,21 @@ class SessionsController < ApplicationController
     redirect_to update_profile_path if @user.name.nil?
   end
 
-  # DELETE /sessions/1
-  # DELETE /sessions/1.json
+  # DELETE /sessions
+  # DELETE /sessions
   def destroy
-    @session.destroy
+    current_session.destroy if current_session
+
+    cookies.delete(:remember_token)
+    @current_user = nil
+
     respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_session
-      @session = Session.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
       params.require(:session).permit(:user_id, :remember_token)

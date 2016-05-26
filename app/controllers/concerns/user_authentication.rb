@@ -10,6 +10,14 @@ module UserAuthentication
     @current_user
   end
 
+  def current_session
+    if cookies[:remember_token] && !@current_session
+      @current_sesion = Session.find_by(remember_token: cookies[:remember_token])
+    end
+
+    @current_sesion
+  end
+
   def logged_in?
     !current_user.nil?
   end
