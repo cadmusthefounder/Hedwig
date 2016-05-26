@@ -6,6 +6,22 @@ RSpec.describe TasksController, :type => :controller do
     expect(response).to be_success
   end
 
+  it "should post create when all the required params are present" do
+    task_params = {from_address: "123 Main Rd", from_postal_code: "123456",
+                   to_address: "456 Main Rd", to_postal_code: "123456",
+                   price: 1.23}
+    expect { post :create, params: {task: task_params} }.to change { Task.count }.by(1)
+    expect(response).to be_success
+    expect(response).to render_template :show
+  end
+
+  it "should post create with errors when some of the params are missing" do
+    task_params = {from_address: "foobar"}
+    expect { post :create, params: {task: task_params} }.not_to change { Task.count }
+    expect(response).to be_success
+    expect(response).to render_template :new
+  end
+
   it "should get show" do
     task = tasks(:first_task)
     get :show, params: {id: task.id}
