@@ -10,9 +10,12 @@ html, body {
 }
 
 body {
-  margin: 0;
-  padding: 33px;
-  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    flex-grow: 1;
+  }
 }
 
 h1 {
