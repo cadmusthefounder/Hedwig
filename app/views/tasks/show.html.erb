@@ -1,1 +1,11 @@
-<%= @task.from_address %>, <%= @task.price %>
+<p>
+  From: <%= @task.from_address %>, <%= @task.from_postal_code %>
+</p>
+
+<p>
+  To: <%= @task.to_address %>, <%= @task.to_postal_code %>
+</p>
+
+<p>
+  Price: <%= number_to_currency @task.price %>
+</p>

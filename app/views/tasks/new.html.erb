@@ -5,20 +5,30 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@task) do |f| %>
-      <%= f.label :from_address, "From Address" %>
-      <%= f.text_field :from_address %>
+      <div class="form-group">
+        <%= f.label :from_address, "From Address" %>
+        <%= f.text_field :from_address, class: "form-control" %>
+      </div>
 
-      <%= f.label :from_postal_code, "From Postal Code" %>
-      <%= f.text_field :from_postal_code %>
+      <div class="form-group">
+        <%= f.label :from_postal_code, "From Postal Code" %>
+        <%= f.text_field :from_postal_code, class: "form-control" %>
+      </div>
 
-      <%= f.label :to_address, "To Address" %>
-      <%= f.text_field :to_address %>
+      <div class="form-group">
+        <%= f.label :to_address, "To Address" %>
+        <%= f.text_field :to_address, class: "form-control" %>
+      </div>
 
-      <%= f.label :to_postal_code, "To Postal Code" %>
-      <%= f.text_field :to_postal_code %>
+      <div class="form-group">
+        <%= f.label :to_postal_code, "To Postal Code" %>
+        <%= f.text_field :to_postal_code, class: "form-control" %>
+      </div>
 
-      <%= f.label :price %>
-      <%= f.text_field :price %>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.text_field :price, class: "form-control" %>
+      </div>
 
       <%= f.submit "Create my task!", class: "btn btn-primary" %>
 
