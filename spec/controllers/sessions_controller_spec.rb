@@ -1,18 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, :type => :controller do
-  before(:each) do
-    @original_account_kit = AccountKit
-  end
-
-  after(:each) do
-    AccountKit = @original_account_kit
-  end
-
   it "should create session" do
     @user = users(:yihang)
 
-    AccountKit = double()
     allow(AccountKit).to receive(:access_token) { "abc123" }
     allow(AccountKit).to receive(:me) { {"email" => {"address" => @user.email},
                                          "id"    => @user.account_kit_id} }
@@ -28,7 +19,6 @@ RSpec.describe SessionsController, :type => :controller do
   end
 
   it "should create session and redirect new user to update profile" do
-    AccountKit = double()
     allow(AccountKit).to receive(:access_token) { "abc123" }
     allow(AccountKit).to receive(:me) { {"email" => {"address" => "newuser@example.com"},
                                          "id"    => "newuser"} }
