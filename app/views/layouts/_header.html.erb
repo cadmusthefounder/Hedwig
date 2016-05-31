@@ -15,6 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <% if logged_in? %>
+            <li><%= link_to "New Task", new_task_path %></li>
             <%= link_to "Logout", sessions_path, method: :delete %>
           <% else %>
             <%= link_to "Login", '#', class: "login-button" %>
