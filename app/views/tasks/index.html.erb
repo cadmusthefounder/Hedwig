@@ -1,0 +1,16 @@
+<% provide(:title, 'All tasks') %>
+
+<h1>All tasks</h1>
+
+<ul class="tasks">
+  <% @tasks.each do |task| %>
+    <p>
+    From Address: <%= task.from_address %>,
+    From Postal Code: <%= task.to_postal_code %>,
+    To Address: <%= task.to_address %>,
+    To Postal Code: <%= task.to_postal_code %>,
+    Price: <%= task.price %>,
+    Status: <%= task.status %>,
+    </p>
+  <% end %>
+</ul>

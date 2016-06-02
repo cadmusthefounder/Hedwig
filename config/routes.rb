@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy'
 
   get 'new_task'        =>  'tasks#new'
+  get 'all_tasks'       =>  'tasks#index'
   resources :tasks
 end

@@ -19,6 +19,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def index
+    @tasks = Task.all
+  end
+
+
   private
 
   def task_params
@@ -26,4 +31,5 @@ class TasksController < ApplicationController
                                  :to_address, :to_postal_code,
                                  :price)
   end
+
 end

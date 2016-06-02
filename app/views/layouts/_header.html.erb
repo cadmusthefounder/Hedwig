@@ -16,9 +16,10 @@
         <li>
           <% if logged_in? %>
             <li><%= link_to "New Task", new_task_path %></li>
+            <li><%= link_to "All Tasks", all_tasks_path %></li>
             <%= link_to "Logout", sessions_path, method: :delete %>
           <% else %>
-            <%= link_to "Login", '#', class: "login-button" %>
+            <%= link_to "Login", "#", class: "login-button" %>
           <% end %>
         </li>
       </ul>
