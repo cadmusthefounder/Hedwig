@@ -35,6 +35,7 @@ RSpec.describe TasksController, :type => :controller do
   end
 
   it "should redirect index when not loggedin" do
+    cookies[:remember_token] = nil
     get :index
     expect(response).to redirect_to(root_path)
   end
