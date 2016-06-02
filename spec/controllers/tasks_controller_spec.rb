@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, :type => :controller do
+  before(:each) do
+    @yihangs_session = sessions(:yihangs_session)
+    cookies[:remember_token] = @yihangs_session.remember_token
+  end
+
   it "should get new" do
     get :new
     expect(response).to be_success
