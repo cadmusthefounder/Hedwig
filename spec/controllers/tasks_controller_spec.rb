@@ -28,4 +28,9 @@ RSpec.describe TasksController, :type => :controller do
     expect(response).to be_success
     expect(response).to render_template :show
   end
+
+  it "should redirect index when not loggedin" do
+    get :index
+    expect(response).to redirect_to(root_path)
+  end
 end

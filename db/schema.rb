@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20160602054827) do
     t.string   "to_address"
     t.string   "to_postal_code"
     t.decimal  "price"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.         "status"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "status",           default: 0
   end
 
   create_table "users", force: :cascade do |t|

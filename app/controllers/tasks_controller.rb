@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :ensure_logged_in
+
   def new
     @task = Task.new
   end
