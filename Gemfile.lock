@@ -61,6 +61,8 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     ffi (1.9.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -199,6 +201,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   capybara (~> 2.7, >= 2.7.1)
+  faker (~> 1.6.3)
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
@@ -220,4 +223,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
