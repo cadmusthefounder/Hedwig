@@ -2,6 +2,8 @@
 
 <h1>All tasks</h1>
 
+<%= will_paginate %>
+
 <ul class="tasks">
   <% @tasks.each do |task| %>
     <p>
@@ -14,3 +16,5 @@
     </p>
   <% end %>
 </ul>
+
+<%= will_paginate %>
