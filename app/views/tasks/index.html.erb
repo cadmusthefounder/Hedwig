@@ -13,6 +13,9 @@
     To Postal Code: <%= task.to_postal_code %>,
     Price: <%= task.price %>,
     Status: <%= task.status %>,
+    <li>
+      <%= link_to "Express Interest", task, method: :put %>
+    </li>
     </p>
   <% end %>
 </ul>

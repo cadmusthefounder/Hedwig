@@ -23,6 +23,19 @@ class TasksController < ApplicationController
     @tasks = Task.paginate(page: params[:page])
   end
 
+  def update
+    @user = current_user
+    @task = Task.find(params[:id])
+    #TODO owner cannot express interest
+    if @user.tasks.exists?(@task.id)
+      flash[:warning] = "You have already expressed interest"
+      redirect_to :back
+    else
+      current_user.tasks << @task
+      flash[:success] = "Interest Indicated"
+      redirect_to :back
+    end
+  end
 
   private
 
