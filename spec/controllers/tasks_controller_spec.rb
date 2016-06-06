@@ -40,8 +40,4 @@ RSpec.describe TasksController, :type => :controller do
     expect(response).to redirect_to(root_path)
   end
 
-  it "index should include pagination" do
-    get :index
-    expect(response).to have_selector("div.pagination")
-  end
 end
