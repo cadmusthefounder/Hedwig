@@ -43,7 +43,7 @@
 
       <div class="form-group">
         <%= f.label :price %>
-        <%= f.text_field :price, class: "form-control" %>
+        <%= f.number_field :price, class: "form-control", step: 0.01 %>
 
         <% @task.errors.full_messages_for(:price).each do |msg| %>
           <p class="text-danger"><%= msg %></p>

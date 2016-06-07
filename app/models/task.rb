@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   has_and_belongs_to_many :users
+  belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
+
   enum status: [ :brand_new, :accepted, :completed ]
 
   validates :from_address, presence: true
