@@ -1,15 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Task, :type => :model do
-  it "task should be valid" do
+  before(:each) do
     @first_task = tasks(:first_task)
-
-    expect(@first_task).to be_valid
   end
 
   it "from address should be present" do
-    @first_task = tasks(:first_task)
-
     expect(@first_task).to be_valid
 
     @first_task.from_address = ""
@@ -18,8 +14,6 @@ RSpec.describe Task, :type => :model do
   end
 
   it "to address should be present" do
-    @first_task = tasks(:first_task)
-
     expect(@first_task).to be_valid
 
     @first_task.to_address = ""
@@ -28,8 +22,6 @@ RSpec.describe Task, :type => :model do
   end
 
   it "price should be present" do
-    @first_task = tasks(:first_task)
-
     expect(@first_task).to be_valid
 
     @first_task.price = ""
@@ -38,8 +30,6 @@ RSpec.describe Task, :type => :model do
   end
 
   it "from postal code should be exactly 6 characters long" do
-    @first_task = tasks(:first_task)
-
     expect(@first_task).to be_valid
 
     @first_task.from_postal_code = "12"
@@ -52,8 +42,6 @@ RSpec.describe Task, :type => :model do
   end
 
   it "to postal code should be exactly 6 characters long" do
-    @first_task = tasks(:first_task)
-
     expect(@first_task).to be_valid
 
     @first_task.to_postal_code = "12"
@@ -66,6 +54,6 @@ RSpec.describe Task, :type => :model do
   end
 
   it "should respond to user" do
-    expect(Task.new).to respond_to :user
+    expect(@first_task).to respond_to :user
   end
 end
