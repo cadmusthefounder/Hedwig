@@ -1,7 +1,8 @@
 class Task < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :interested_users, class_name: "User", join_table: :interested_tasks_users
   has_many :messages
+  has_many :interests
+  has_many :interested_users, through: :interests, source: :user
 
   enum status: [ :brand_new, :accepted, :completed ]
 

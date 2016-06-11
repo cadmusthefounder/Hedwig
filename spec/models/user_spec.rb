@@ -60,4 +60,8 @@ RSpec.describe User, :type => :model do
   it "should respond to messages" do
     expect(@user).to respond_to(:messages)
   end
+
+  it "should respond to interests" do
+    expect(@user).to respond_to(:interests)
+  end
 end
