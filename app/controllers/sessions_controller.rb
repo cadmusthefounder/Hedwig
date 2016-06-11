@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  def new
+  end
+
   # POST /sessions
   # POST /sessions.json
   def create
