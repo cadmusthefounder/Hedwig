@@ -25,20 +25,20 @@ class TasksController < ApplicationController
     @tasks = Task.paginate(page: params[:page])
   end
 
-  def update
+  def express_interest
     @user = current_user
     @task = Task.find(params[:id])
-    if @user.owned.exists?(@task.id) or (@task.owner_id == @user.id)
+
+    if @user.tasks.exists?(@task.id) || (@task.user_id == @user.id)
       flash[:warning] = "You cannot take up your own request"
-      redirect_to :back
-    elsif @user.tasks.exists?(@task.id)
+    elsif @user.interested_tasks.exists?(@task.id)
       flash[:warning] = "You have already expressed interest"
-      redirect_to :back
     else
-      current_user.tasks << @task
+      current_user.interested_tasks << @task
       flash[:success] = "Interest Indicated"
-      redirect_to :back
     end
+
+    redirect_back(fallback_location: tasks_path)
   end
 
   private

@@ -6,6 +6,13 @@ first_task:
   price: 14.99
   user: yihang
 
+second_task:
+  from_address: 13 Computing Drive
+  from_postal_code: 117417
+  to_address: 435 Orchard Road
+  to_postal_code: 238877
+  price: 14.99
+  user: other
 
 
 <% 50.times do |n| %>

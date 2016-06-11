@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   get 'new_task'        =>  'tasks#new'
   get 'all_tasks'       =>  'tasks#index'
-  resources :tasks
+  resources :tasks do
+    post 'express_interest', on: :member, as: :task_express_interest
+  end
 end
