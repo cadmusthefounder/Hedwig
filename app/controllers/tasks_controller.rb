@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @user = current_user
-    @task.owner_id = @user.id
+    @task.user = @user
 
     if @task.save
       render 'show'

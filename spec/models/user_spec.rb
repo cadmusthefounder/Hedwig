@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  it "email should be present" do
+  before(:each) do
     @user = users(:yihang)
+  end
 
+  it "email should be present" do
     expect(@user).to be_valid
 
     @user.email = ""
@@ -12,8 +14,6 @@ RSpec.describe User, :type => :model do
   end
 
   it "account_kit_id should be present" do
-    @user = users(:yihang)
-
     expect(@user).to be_valid
 
     @user.account_kit_id = ""
@@ -22,8 +22,6 @@ RSpec.describe User, :type => :model do
   end
 
   it "email should be unique" do
-    @user = users(:yihang)
-
     another_user = User.new(name: "Foo", email: "Bar", account_kit_id: "123")
 
     expect(another_user).to be_valid
@@ -38,8 +36,6 @@ RSpec.describe User, :type => :model do
   end
 
   it "account_kit_id should be unique" do
-    @user = users(:yihang)
-
     another_user = User.new(name: "Foo", email: "Bar", account_kit_id: "123")
 
     expect(another_user).to be_valid
@@ -50,7 +46,10 @@ RSpec.describe User, :type => :model do
   end
 
   it "user should respond to sessions" do
-    @user = users(:yihang)
     expect(@user).to respond_to(:sessions)
+  end
+
+  it "should respond to tasks" do
+    expect(@user).to respond_to(:tasks)
   end
 end

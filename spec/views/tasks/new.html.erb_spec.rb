@@ -11,7 +11,8 @@ describe "tasks/new", :type => :view do
   end
 
   it "should display error message if present" do
-    task = Task.new(from_address: "foobar", owner: users(:yihang))
+    @user = users(:yihang)
+    task = @user.tasks.build(from_address: "foobar")
 
     expect(task).not_to be_valid
 

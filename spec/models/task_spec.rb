@@ -64,4 +64,8 @@ RSpec.describe Task, :type => :model do
 
     expect(@first_task).not_to be_valid
   end
+
+  it "should respond to user" do
+    expect(Task.new).to respond_to :user
+  end
 end
