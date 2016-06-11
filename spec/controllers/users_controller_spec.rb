@@ -16,7 +16,7 @@ RSpec.describe UsersController, :type => :controller do
 
   it "should not get update_profile if not logged in" do
     get :edit
-    expect(response).to redirect_to(root_path)
+    expect(response).to redirect_to(new_session_path)
   end
 
   it "should patch/put update_profile if logged in" do
@@ -35,7 +35,7 @@ RSpec.describe UsersController, :type => :controller do
 
   it "should not patch update_profile if not logged in" do
     patch :update, params: { user: { name: "bla" } }
-    expect(response).to redirect_to(root_path)
+    expect(response).to redirect_to(new_session_path)
   end
 
   it "update_profile should ignore all fields except name" do
