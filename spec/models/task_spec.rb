@@ -60,4 +60,8 @@ RSpec.describe Task, :type => :model do
   it "should respond to interested_users" do
     expect(@first_task).to respond_to :interested_users
   end
+
+  it "should respond to messages" do
+    expect(@first_task).to respond_to :messages
+  end
 end
