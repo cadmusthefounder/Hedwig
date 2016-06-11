@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root                      'static_pages#home'
+  root                      'tasks#index'
+  get 'home'            =>  'static_pages#home'
   get 'about'           =>  'static_pages#about'
   get 'faq'             =>  'static_pages#faq'
   get 'terms_of_use'    =>  'static_pages#terms_of_use'

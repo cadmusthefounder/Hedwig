@@ -34,10 +34,10 @@ RSpec.describe TasksController, :type => :controller do
     expect(response).to render_template :show
   end
 
-  it "should redirect index when not loggedin" do
+  it "should render home page if user is not logged in and is accessing index" do
     cookies[:remember_token] = nil
     get :index
-    expect(response).to redirect_to(root_path)
+    expect(response).to render_template 'static_pages/home'
   end
 
   it "should post express_interest" do

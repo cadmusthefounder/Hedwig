@@ -1,5 +1,10 @@
 class TasksController < ApplicationController
-  before_action :ensure_logged_in
+  before_action :ensure_logged_in, except: :index
+
+  def index
+    @tasks = Task.paginate(page: params[:page])
+    render 'static_pages/home' unless logged_in?
+  end
 
   def new
     @task = Task.new
@@ -19,10 +24,6 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-  end
-
-  def index
-    @tasks = Task.paginate(page: params[:page])
   end
 
   def express_interest
