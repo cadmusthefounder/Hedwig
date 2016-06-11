@@ -4,6 +4,7 @@ first_task:
   to_address: 435 Orchard Road
   to_postal_code: 238877
   price: 14.99
+  owner: yihang
 
 
 
@@ -16,6 +17,3 @@ task_<%= n %>:
   to_postal_code: 654321
   price: 12.99
 <% end %>
-
-
-
