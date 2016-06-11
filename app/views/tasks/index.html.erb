@@ -4,21 +4,27 @@
 
 <%= will_paginate @tasks %>
 
-<ul class="tasks">
-  <% @tasks.each do |task| %>
-    <p>
-      From Address: <%= task.from_address %>,
-      From Postal Code: <%= task.to_postal_code %>,
-      To Address: <%= task.to_address %>,
-      To Postal Code: <%= task.to_postal_code %>,
-      Price: <%= task.price %>,
-      Status: <%= task.status %>
-
-      <% unless task.interested_users.include?(current_user) || task.user == current_user %>
-        <%= button_to "Express Interest", task_express_interest_task_path(task), method: :post, form: {style: "display:inline-block;"} %>
-      <% end %>
-    </p>
-  <% end %>
-</ul>
+<div class="tasks-index">
+  <ul class="list-group">
+    <% @tasks.each do |task| %>
+      <li class="list-group-item">
+        <span class="price">
+          <span class="badge"><%= number_to_currency task.price %></span>
+        </span>
+        <span class="info">
+          <%= task.from_address %>, <%= task.from_postal_code %> <i class="glyphicon glyphicon-arrow-right"></i> <%= task.to_address %>, <%= task.to_postal_code %>
+        </span>
+        <span class="express-interest">
+          <% unless task.interested_users.include?(current_user) || task.user == current_user %>
+            <%= link_to task_express_interest_task_path(task), method: :post, class: "btn btn-primary btn-xs" do %>
+              <i class="glyphicon glyphicon-star-empty"></i>
+              Express Interest
+            <% end %>
+          <% end %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <%= will_paginate @tasks %>

@@ -20,7 +20,7 @@ describe "tasks/index", :type => :view do
 
     render
 
-    expect(rendered).to have_button("Express Interest")
+    expect(rendered).to have_link("Express Interest")
   end
 
   it "should not show the express interest button to currently interested users" do
@@ -33,7 +33,7 @@ describe "tasks/index", :type => :view do
 
     render
 
-    expect(rendered).not_to have_button("Express Interest")
+    expect(rendered).not_to have_link("Express Interest")
   end
 
   it "should not show the express interest button to the owner" do
@@ -45,6 +45,6 @@ describe "tasks/index", :type => :view do
 
     render
 
-    expect(rendered).not_to have_button("Express Interest")
+    expect(rendered).not_to have_link("Express Interest")
   end
 end

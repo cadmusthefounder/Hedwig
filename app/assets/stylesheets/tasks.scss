@@ -1,0 +1,15 @@
+.tasks-index {
+  .list-group-item {
+    display: flex;
+  }
+
+  .price {
+    flex-basis: 90px;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .info {
+    flex-grow: 1;
+  }
+}
