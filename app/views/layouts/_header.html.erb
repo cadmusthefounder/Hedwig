@@ -13,10 +13,9 @@
 
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "New Task", new_task_path %></li>
         <li>
           <% if logged_in? %>
-            <li><%= link_to "New Task", new_task_path %></li>
-            <li><%= link_to "All Tasks", all_tasks_path %></li>
             <%= link_to "Logout", sessions_path, method: :delete %>
           <% else %>
             <%= link_to "Login", "#", class: "login-button" %>
