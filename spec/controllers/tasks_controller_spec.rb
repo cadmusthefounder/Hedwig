@@ -27,6 +27,12 @@ RSpec.describe TasksController, :type => :controller do
     expect(response).to render_template :new
   end
 
+  it "should post create and be prompted to login if user is not logged in" do
+    cookies.delete(:remember_token)
+    post :create, params: {task: {from_address: "foobar"}}
+    expect(response).to redirect_to new_session_path
+  end
+
   it "should get show" do
     task = tasks(:first_task)
     get :show, params: {id: task.id}
@@ -35,7 +41,7 @@ RSpec.describe TasksController, :type => :controller do
   end
 
   it "should render home page if user is not logged in and is accessing index" do
-    cookies[:remember_token] = nil
+    cookies.delete(:remember_token)
     get :index
     expect(response).to render_template 'static_pages/home'
   end
