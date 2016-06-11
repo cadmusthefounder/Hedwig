@@ -13,7 +13,10 @@
       To Postal Code: <%= task.to_postal_code %>,
       Price: <%= task.price %>,
       Status: <%= task.status %>
-      <%= button_to "Express Interest", task, method: :put, form: {style: "display:inline-block;"} %>
+
+      <% unless task.interested_users.include?(current_user) || task.user == current_user %>
+        <%= button_to "Express Interest", task_express_interest_task_path(task), method: :post, form: {style: "display:inline-block;"} %>
+      <% end %>
     </p>
   <% end %>
 </ul>

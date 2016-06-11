@@ -11,4 +11,40 @@ describe "tasks/index", :type => :view do
     expect(rendered).to have_selector("div.pagination")
   end
 
+  it "should show the express interest button to currently uninterested users" do
+    task = tasks(:second_task)
+    user = users(:yihang)
+
+    assign(:current_user, user)
+    assign(:tasks, [task].paginate(page: 1))
+
+    render
+
+    expect(rendered).to have_button("Express Interest")
+  end
+
+  it "should not show the express interest button to currently interested users" do
+    task = tasks(:second_task)
+    user = users(:yihang)
+    task.interested_users << user
+
+    assign(:current_user, user)
+    assign(:tasks, [task].paginate(page: 1))
+
+    render
+
+    expect(rendered).not_to have_button("Express Interest")
+  end
+
+  it "should not show the express interest button to the owner" do
+    task = tasks(:first_task)
+    user = users(:yihang)
+
+    assign(:current_user, user)
+    assign(:tasks, [task].paginate(page: 1))
+
+    render
+
+    expect(rendered).not_to have_button("Express Interest")
+  end
 end
