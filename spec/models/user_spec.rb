@@ -52,4 +52,8 @@ RSpec.describe User, :type => :model do
   it "should respond to tasks" do
     expect(@user).to respond_to(:tasks)
   end
+
+  it "should respond to interested_tasks" do
+    expect(@user).to respond_to(:interested_tasks)
+  end
 end

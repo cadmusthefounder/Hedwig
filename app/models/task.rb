@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_and_belongs_to_many :interested_users, class_name: "User", join_table: :interested_tasks_users
 
   enum status: [ :brand_new, :accepted, :completed ]
 
