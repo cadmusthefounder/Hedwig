@@ -8,4 +8,8 @@ RSpec.describe Message, :type => :model do
   it "should respond to user" do
     expect(@message).to respond_to :user
   end
+
+  it "should respond to interest" do
+    expect(@message).to respond_to :interest
+  end
 end

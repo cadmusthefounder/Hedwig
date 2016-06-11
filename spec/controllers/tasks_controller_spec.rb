@@ -45,30 +45,4 @@ RSpec.describe TasksController, :type => :controller do
     get :index
     expect(response).to render_template 'static_pages/home'
   end
-
-  it "should post express_interest" do
-    user = users(:yihang)
-    task = tasks(:second_task)
-    post :express_interest, params: {id: task.id}
-    expect(response).to redirect_to tasks_path
-    expect(task.interested_users).to include user
-    expect(user.interested_tasks).to include task
-  end
-
-  it "should post express_interest, but will not create duplicate interests" do
-    user = users(:yihang)
-    task = tasks(:second_task)
-    user.interested_tasks << task
-
-    expect { post :express_interest, params: {id: task.id} }.not_to change { task.interested_users.count }
-  end
-
-  it "should post express_interest, but will not mark owner as interested" do
-    user = users(:yihang)
-    task = tasks(:first_task)
-
-    expect(task.user).to eq user
-
-    expect { post :express_interest, params: {id: task.id} }.not_to change { task.interested_users.count }
-  end
 end

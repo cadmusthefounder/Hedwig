@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy'
 
   resources :tasks do
-    post 'express_interest', on: :member, as: :task_express_interest
-
     resources :threads, only: :show do
       post 'create_message', on: :member, as: :create_message
     end
+  end
+
+  resources :threads, only: [:create, :show] do
+    resources :messages, only: [:index, :create]
   end
 end

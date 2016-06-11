@@ -26,22 +26,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def express_interest
-    @user = current_user
-    @task = Task.find(params[:id])
-
-    if @user.tasks.exists?(@task.id) || (@task.user_id == @user.id)
-      flash[:warning] = "You cannot take up your own request"
-    elsif @user.interested_tasks.exists?(@task.id)
-      flash[:warning] = "You have already expressed interest"
-    else
-      current_user.interested_tasks << @task
-      flash[:success] = "Interest Indicated"
-    end
-
-    redirect_back(fallback_location: tasks_path)
-  end
-
   private
 
   def task_params
