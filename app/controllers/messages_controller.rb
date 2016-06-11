@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
     @message = @interest.messages.create(message: message_params[:message], user: current_user)
 
     # TODO error handling
-    redirect_to thread_messages_path(@interest)
+    ChatChannel.broadcast_to(@interest, {id: @message.id, message: @message.message, sender: current_user.name})
   end
 
 

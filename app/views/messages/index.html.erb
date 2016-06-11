@@ -8,10 +8,43 @@
   <% end %>
 </ul>
 
-<%= form_for(Message.new, url: { action: :create }) do |f| %>
+<%= form_for(Message.new, url: { action: :create }, remote: true) do |f| %>
   <div class="form-group">
     <%= f.text_field :message, class: "form-control" %>
   </div>
 
   <%= f.submit "Send", class: "btn btn-primary" %>
 <% end %>
+
+<script>
+(function() {
+  var receivedMessages = {};
+  var subscription = App.cable.subscriptions.create({
+    channel: "ChatChannel",
+    thread_id: <%= @interest.id %>
+  }, {
+    received: function(message) {
+      if (!receivedMessages[message.id]) {
+        $(".list-group").append('<li class="list-group-item">' + message.sender + ': ' + message.message + '</li>');
+        receivedMessages[message.id] = true;
+      }
+    }
+  });
+
+  $(document).on('turbolinks:load', function() {
+    $("#new_message").on("ajax:success", function() {
+      $("#message_message").val("");
+    });
+
+    $("#message_message").keyup(function(event) {
+      if (event.keyCode === 13) {
+        $("input[type=submit]").click();
+      }
+    });
+  });
+
+  $(document).on('turbolinks:request-start', function() {
+    App.cable.subscriptions.remove(subscription);
+  });
+})();
+</script>
