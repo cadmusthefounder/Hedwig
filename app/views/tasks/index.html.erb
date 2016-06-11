@@ -2,7 +2,7 @@
 
 <h1>All tasks</h1>
 
-<%= will_paginate %>
+<%= will_paginate @tasks %>
 
 <ul class="tasks">
   <% @tasks.each do |task| %>
@@ -18,4 +18,4 @@
   <% end %>
 </ul>
 
-<%= will_paginate %>
+<%= will_paginate @tasks %>

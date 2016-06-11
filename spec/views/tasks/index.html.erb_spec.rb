@@ -1,9 +1,10 @@
 require 'rails_helper'
+require 'will_paginate/array'
 
 describe "tasks/index", :type => :view do
   it "should paginate" do
     tasks = (0..49).map { |i| tasks(:"task_#{i}") }
-    assign(:task, tasks)
+    assign(:tasks, tasks.paginate(page: 1))
 
     render
 
@@ -11,4 +12,3 @@ describe "tasks/index", :type => :view do
   end
 
 end
-
