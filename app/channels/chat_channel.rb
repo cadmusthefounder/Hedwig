@@ -1,7 +1,11 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    # TODO auth
     interest = Interest.find(params[:thread_id])
-    stream_for interest
+
+    if interest.user == current_user || interest.task.user == current_user
+      stream_for interest
+    else
+      reject
+    end
   end
 end
