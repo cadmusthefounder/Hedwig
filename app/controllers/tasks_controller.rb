@@ -2,7 +2,11 @@ class TasksController < ApplicationController
   before_action :ensure_logged_in, except: :index
 
   def index
-    @tasks = Task.paginate(page: params[:page])
+    if params[:search]
+      @tasks = Task.paginate(page: params[:page]).search(params[:search])
+    else
+      @tasks = Task.paginate(page: params[:page])
+    end
     render 'static_pages/home' unless logged_in?
   end
 

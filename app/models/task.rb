@@ -30,4 +30,8 @@ class Task < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    where('price LIKE ?', '%#{search}%')
+  end
+
 end
