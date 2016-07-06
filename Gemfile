@@ -33,6 +33,7 @@ gem 'rest-client', '~> 1.8'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'will_paginate',  '~> 3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'coffee-rails', '4.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
