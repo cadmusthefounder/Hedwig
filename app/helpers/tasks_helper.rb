@@ -1,10 +1,9 @@
 module TasksHelper
   def sortable(column,title)
-    puts("Hi")
     if title == "Newest"
-      link_to title, :sort => column, :direction => "asc"
+      link_to title, :sort => column, :direction => "ASC"
     else
-      link_to title, :sort => column, :direction => "desc"
+      link_to title, :sort => column, :direction => "DESC"
     end
   end
 end
