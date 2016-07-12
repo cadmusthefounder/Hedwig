@@ -6,9 +6,9 @@ class TasksController < ApplicationController
     params[:direction] ||= "ASC"
 
     if params[:search]
-      @tasks = Task.search(params[:search]).order(params[:sort] + " " + params[:direction]).paginate(:per_page => 5, :page => params[:page])
+      @tasks = Task.search(params[:search]).order(params[:sort] => params[:direction]).paginate(:per_page => 5, :page => params[:page])
     else
-      @tasks = Task.order(params[:sort] + " " + params[:direction]).paginate(:per_page => 5, :page => params[:page])
+      @tasks = Task.order(params[:sort] => params[:direction]).paginate(:per_page => 5, :page => params[:page])
     end
     render 'static_pages/home' unless logged_in?
   end
