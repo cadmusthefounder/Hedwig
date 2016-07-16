@@ -53,6 +53,19 @@ RSpec.describe Task, :type => :model do
     expect(@first_task).not_to be_valid
   end
 
+  it "completion_token should be present" do
+    expect(@first_task).to be_valid
+
+    @first_task.completion_token = ""
+
+    expect(@first_task).not_to be_valid
+  end
+
+  it "should have a default completion token" do
+    task = Task.new
+    expect(task.completion_token).not_to be_empty
+  end
+
   it "should respond to user" do
     expect(@first_task).to respond_to :user
   end

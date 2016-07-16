@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716040813) do
+ActiveRecord::Schema.define(version: 20160716061827) do
 
   create_table "interests", force: :cascade do |t|
     t.integer  "task_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160716040813) do
     t.integer  "status",                                    default: 0
     t.integer  "user_id"
     t.integer  "assigned_user_id"
+    t.string   "completion_token"
     t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
   end
 

@@ -18,6 +18,11 @@ class Task < ApplicationRecord
   validates :to_address, presence: true
   validates :to_postal_code, length: { is: 6 }
   validates :price, presence: true
+  validates :completion_token, presence: true
+
+  after_initialize do |task|
+    task.completion_token ||= SecureRandom.uuid[0..6]
+  end
 
   def brand_new?
     status == "brand_new"
