@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   resources :sessions
   delete '/sessions', to: 'sessions#destroy'
 
-  get '/tasks/mine', to: 'tasks/current_users#index'
-
   resources :tasks do
     post 'assign', on: :member
+    get 'mine', on: :collection, to: 'tasks/current_users#index', as: :my
 
     resources :threads, only: :show do
       post 'create_message', on: :member, as: :create_message
