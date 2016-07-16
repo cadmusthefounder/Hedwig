@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716061827) do
+ActiveRecord::Schema.define(version: 20160716110502) do
 
   create_table "interests", force: :cascade do |t|
     t.integer  "task_id"
@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(version: 20160716061827) do
     t.string   "name"
     t.string   "email"
     t.string   "account_kit_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.decimal  "credit",         default: "0.0", null: false
     t.index ["account_kit_id"], name: "index_users_on_account_kit_id", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
