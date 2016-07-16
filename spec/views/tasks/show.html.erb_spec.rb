@@ -11,6 +11,6 @@ describe "tasks/show", :type => :view do
     expect(rendered).to have_content(task.from_postal_code)
     expect(rendered).to have_content(task.to_address)
     expect(rendered).to have_content(task.to_postal_code)
-    expect(rendered).to have_content(number_to_currency(task.price))
+    expect(rendered).to have_content(number_to_currency(task.list_price))
   end
 end

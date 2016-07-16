@@ -3,6 +3,7 @@
 yihang:
   name: yihang
   email: yihang@example.com
+  credit: 1000
   account_kit_id: 123456
 
 other:
