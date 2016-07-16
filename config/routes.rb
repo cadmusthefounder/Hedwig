@@ -13,9 +13,16 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy'
 
   resources :tasks do
-    post 'assign', on: :member
-    get 'mine', on: :collection, to: 'tasks/current_users#index', as: :my
-    get 'assigned_to_me', on: :collection, to: 'assigned_tasks/current_users#index'
+    member do
+      post 'assign'
+      post 'accept', to: 'tasks#accept_assignment'
+      post 'reject', to: 'tasks#reject_assignment'
+    end
+
+    collection do
+      get 'mine', to: 'tasks/current_users#index', as: :my
+      get 'assigned_to_me', to: 'assigned_tasks/current_users#index'
+    end
 
     resources :threads, only: :show do
       post 'create_message', on: :member, as: :create_message

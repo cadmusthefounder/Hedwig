@@ -8,10 +8,18 @@
   <span class="express-interest">
     <% if task.user == current_user %>
       <%= render 'tasks/view_button', task: task %>
-    <% elsif task.interested_users.include?(current_user) %>
-      <%= render 'tasks/chat_button', task: task %>
-    <% else %>
-      <%= render 'tasks/express_interest_button', task: task %>
+    <% elsif task.brand_new? %>
+      <% if task.interested_users.include?(current_user) %>
+        <%= render 'tasks/chat_button', task: task %>
+      <% else %>
+        <%= render 'tasks/express_interest_button', task: task %>
+      <% end %>
+    <% elsif task.assigned? %>
+      <% if task.assigned_user == current_user %>
+        <%= render 'tasks/accept_button', task: task %>
+        <%= render 'tasks/reject_button', task: task %>
+        <%= render 'tasks/chat_button', task: task %>
+      <% end %>
     <% end %>
   </span>
 </li>

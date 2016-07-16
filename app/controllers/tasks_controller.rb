@@ -53,6 +53,35 @@ class TasksController < ApplicationController
     render 'show'
   end
 
+  def accept_assignment
+    @task = Task.find(params[:id])
+
+    unless @task.assigned_user == current_user
+      flash[:error] = "You cannot accept this task"
+      return render 'show'
+    end
+
+    @task.status = :in_progress
+    @task.save
+
+    render 'show'
+  end
+
+  def reject_assignment
+    @task = Task.find(params[:id])
+
+    unless @task.assigned_user == current_user
+      flash[:error] = "You cannot reject this task"
+      return render 'show'
+    end
+
+    @task.status = :brand_new
+    @task.assigned_user = nil
+    @task.save
+
+    render 'show'
+  end
+
   private
 
   def task_params

@@ -87,4 +87,66 @@ RSpec.describe TasksController, :type => :controller do
       expect(task.assigned_user).to eq assignee
     end
   end
+
+  describe "accept_assignment" do
+    it "should no-op if the user is not assigned" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+      another_user = users(:another)
+
+      task.assigned_user = another_user
+      task.status = :assigned
+      task.save
+
+      post :accept_assignment, params: {id: task.id, user_id: user.id}
+      task.reload
+      expect(task).to be_assigned
+      expect(task.assigned_user).to eq another_user
+    end
+
+    it "should update the status to in_progress" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+
+      task.assigned_user = user
+      task.status = :assigned
+      task.save
+
+      post :accept_assignment, params: {id: task.id, user_id: user.id}
+      task.reload
+      expect(task).to be_in_progress
+    end
+  end
+
+  describe "reject_assignment" do
+    it "should no-op if the user is not assigned" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+      another_user = users(:another)
+
+      task.assigned_user = another_user
+      task.status = :assigned
+      task.save
+
+      post :reject_assignment, params: {id: task.id, user_id: user.id}
+      task.reload
+      expect(task).to be_assigned
+      expect(task.assigned_user).to eq another_user
+    end
+
+    it "should update the status to in_progress" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+
+      task.assigned_user = user
+      task.status = :assigned
+      task.save
+
+      post :reject_assignment, params: {id: task.id, user_id: user.id}
+      task.reload
+      expect(task).to be_brand_new
+      expect(task.assigned_user).to be_nil
+    end
+  end
+
 end
