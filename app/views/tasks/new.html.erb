@@ -45,6 +45,10 @@
         <%= f.label :price %>
         <%= f.number_field :price, class: "form-control", step: 0.01 %>
 
+        <p class="help-block">
+          This amount will be deducted from you account as soon as this task is created.
+        </p>
+
         <% @task.errors.full_messages_for(:price).each do |msg| %>
           <p class="text-danger"><%= msg %></p>
         <% end %>

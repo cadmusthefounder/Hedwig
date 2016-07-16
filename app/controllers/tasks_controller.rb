@@ -25,11 +25,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    @user = current_user
-    @task.user = @user
+    @task = current_user.tasks.build(task_params)
 
-    if @task.save
+    if @task.price > current_user.credit
+      @task.errors.add(:price, :too_high, message: "is higher than your available credit")
+      render 'new'
+    elsif @task.save
+      current_user.credit -= @task.price
+      current_user.save
       render 'show'
     else
       render 'new'
