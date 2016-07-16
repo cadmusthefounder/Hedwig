@@ -68,4 +68,44 @@ RSpec.describe Task, :type => :model do
   it "should respond to interests" do
     expect(@first_task).to respond_to :interests
   end
+
+  describe "brand new tasks" do
+    it "should return true for brand_new? and false for assigned?, in_progress?, completed?" do
+      task = tasks(:brand_new_task)
+      expect(task).to be_brand_new
+      expect(task).not_to be_assigned
+      expect(task).not_to be_in_progress
+      expect(task).not_to be_completed
+    end
+  end
+
+  describe "assigned tasks" do
+    it "should return true for assigned? and false for brand_new?, in_progress?, completed?" do
+      task = tasks(:assigned_task)
+      expect(task).not_to be_brand_new
+      expect(task).to be_assigned
+      expect(task).not_to be_in_progress
+      expect(task).not_to be_completed
+    end
+  end
+
+  describe "in progress tasks" do
+    it "should return true for assigned? and false for brand_new?, in_progress?, completed?" do
+      task = tasks(:in_progress_task)
+      expect(task).not_to be_brand_new
+      expect(task).not_to be_assigned
+      expect(task).to be_in_progress
+      expect(task).not_to be_completed
+    end
+  end
+
+  describe "completed tasks" do
+    it "should return true for assigned? and false for brand_new?, in_progress?, completed?" do
+      task = tasks(:completed_task)
+      expect(task).not_to be_brand_new
+      expect(task).not_to be_assigned
+      expect(task).not_to be_in_progress
+      expect(task).to be_completed
+    end
+  end
 end

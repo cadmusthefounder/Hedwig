@@ -14,9 +14,7 @@ second_task:
   price: 14.99
   user: other
 
-
 <% 50.times do |n| %>
-
 task_<%= n %>:
   from_address: <%= "ang mo kio ave #{n}" %>
   from_postal_code: 123456
@@ -24,3 +22,39 @@ task_<%= n %>:
   to_postal_code: 654321
   price: 12.99
 <% end %>
+
+brand_new_task:
+  from_address: 13 Computing Drive
+  from_postal_code: 117417
+  to_address: 435 Orchard Road
+  to_postal_code: 238877
+  price: 14.99
+  user: yihang
+  status: "brand_new"
+
+assigned_task:
+  from_address: 13 Computing Drive
+  from_postal_code: 117417
+  to_address: 435 Orchard Road
+  to_postal_code: 238877
+  price: 14.99
+  user: yihang
+  status: "assigned"
+
+in_progress_task:
+  from_address: 13 Computing Drive
+  from_postal_code: 117417
+  to_address: 435 Orchard Road
+  to_postal_code: 238877
+  price: 14.99
+  user: yihang
+  status: "in_progress"
+
+completed_task:
+  from_address: 13 Computing Drive
+  from_postal_code: 117417
+  to_address: 435 Orchard Road
+  to_postal_code: 238877
+  price: 14.99
+  user: yihang
+  status: "completed"
