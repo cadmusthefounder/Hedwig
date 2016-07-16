@@ -10,8 +10,7 @@ RSpec.describe SessionsController, :type => :controller do
 
     post :create, params: {code: "myawesomecode"}
 
-    expect(response).to be_success
-    expect(response).not_to redirect_to(update_profile_path)
+    expect(response).to redirect_to(root_path)
     expect(cookies[:remember_token]).not_to be_nil
     session = Session.find_by(remember_token: cookies["remember_token"])
     expect(session).not_to be_nil
