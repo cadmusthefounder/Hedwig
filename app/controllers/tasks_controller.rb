@@ -5,9 +5,16 @@ class TasksController < ApplicationController
     @title = "All Tasks"
 
     sort_attribute = params[:sort] || "created_at"
-    sort_direction = params[:direction] || "ASC"
+    sort_direction = params[:direction] || "DESC"
 
-    @tasks = Task.order(sort_attribute => sort_direction).paginate(:per_page => 5, :page => params[:page])
+    new_tasks = Task.brand_new.where.not(user: current_user)
+    active_tasks_assigned_to_me = Task.where.not(status: :completed)
+                                      .where(assigned_user: current_user)
+
+    @tasks = new_tasks.or(active_tasks_assigned_to_me)
+                      .order(sort_attribute => sort_direction)
+                      .paginate(:per_page => 5, :page => params[:page])
+
     @tasks = @tasks.search(params[:search]) if params[:search]
 
     render 'static_pages/home' unless logged_in?
