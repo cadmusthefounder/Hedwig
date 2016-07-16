@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :tasks do
     post 'assign', on: :member
     get 'mine', on: :collection, to: 'tasks/current_users#index', as: :my
+    get 'assigned_to_me', on: :collection, to: 'assigned_tasks/current_users#index'
 
     resources :threads, only: :show do
       post 'create_message', on: :member, as: :create_message
