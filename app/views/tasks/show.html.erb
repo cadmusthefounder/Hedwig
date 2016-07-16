@@ -9,3 +9,21 @@
 <p>
   Price: <%= number_to_currency @task.price %>
 </p>
+
+<div class="interested-users">
+  <ul class="list-group">
+    <% @task.interests.includes(:user).each do |interest| %>
+      <li class="list-group-item">
+        <span class="user-name">
+          <%= interest.user.name %>
+        </span>
+        <span class="chat-button">
+          <%= link_to thread_messages_path(interest), class: "btn btn-info btn-xs" do %>
+            <i class="glyphicon glyphicon-envelope"></i>
+            Chat
+          <% end %>
+        </button>
+      </li>
+    <% end %>
+  </ul>
+</div>

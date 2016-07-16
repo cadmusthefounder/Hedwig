@@ -13,3 +13,13 @@
     flex-grow: 1;
   }
 }
+
+.interested-users {
+  .list-group-item {
+    display: flex;
+  }
+
+  .user-name {
+    flex-grow: 1;
+  }
+}
