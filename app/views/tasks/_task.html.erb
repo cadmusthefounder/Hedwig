@@ -7,20 +7,11 @@
   </span>
   <span class="express-interest">
     <% if task.user == current_user %>
-      <%= link_to task, class: "btn btn-success btn-xs" do %>
-        <i class="glyphicon glyphicon-zoom-in"></i>
-        View
-      <% end %>
+      <%= render 'tasks/view_button', task: task %>
     <% elsif task.interested_users.include?(current_user) %>
-      <%= link_to thread_messages_path(task.interests.where(user: current_user).first), class: "btn btn-info btn-xs" do %>
-        <i class="glyphicon glyphicon-envelope"></i>
-        Chat
-      <% end %>
+      <%= render 'tasks/chat_button', task: task %>
     <% else %>
-      <%= button_to threads_path, method: :post, params: {interest: {task_id: task}}, class: "btn btn-primary btn-xs" do %>
-        <i class="glyphicon glyphicon-star-empty"></i>
-        Express Interest
-      <% end %>
+      <%= render 'tasks/express_interest_button', task: task %>
     <% end %>
   </span>
 </li>
