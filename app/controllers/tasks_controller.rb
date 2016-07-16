@@ -116,6 +116,9 @@ class TasksController < ApplicationController
     if @task.completion_token == params[:completion_token]
       @task.status = :completed
       @task.save
+
+      current_user.credit += @task.price * 0.75
+      current_user.save
     else
       render json: {
         error: 'Invalid completion token'
