@@ -20,6 +20,10 @@
         <%= render 'tasks/reject_button', task: task %>
         <%= render 'tasks/chat_button', task: task %>
       <% end %>
+    <% elsif task.in_progress? %>
+      <% if task.assigned_user == current_user %>
+        <%= render 'tasks/completion_button', task: task %>
+      <% end %>
     <% end %>
   </span>
 </li>

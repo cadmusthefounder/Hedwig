@@ -82,6 +82,31 @@ class TasksController < ApplicationController
     render 'show'
   end
 
+  def complete_task
+    @task = Task.find(params[:id])
+
+    unless @task.assigned_user == current_user
+      return render json: {
+        error: 'You cannot complete this task.'
+      }, status: :forbidden
+    end
+
+    unless @task.in_progress?
+      return render json: {
+        error: 'You have to accept this task first.'
+      }, status: :bad_request
+    end
+
+    if @task.completion_token == params[:completion_token]
+      @task.status = :completed
+      @task.save
+    else
+      render json: {
+        error: 'Invalid completion token'
+      }, status: :bad_request
+    end
+  end
+
   private
 
   def task_params

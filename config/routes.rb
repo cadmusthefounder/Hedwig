@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post 'assign'
       post 'accept', to: 'tasks#accept_assignment'
       post 'reject', to: 'tasks#reject_assignment'
+      post 'complete', to: 'tasks#complete_task'
     end
 
     collection do

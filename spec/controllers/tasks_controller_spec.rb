@@ -149,4 +149,58 @@ RSpec.describe TasksController, :type => :controller do
     end
   end
 
+  describe "complete_task" do
+    it "should no-op if the user is not assigned" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+      another_user = users(:another)
+
+      task.assigned_user = another_user
+      task.status = :in_progress
+      task.save
+
+      post :complete_task, params: {id: task.id, completion_token: task.completion_token}
+      task.reload
+      expect(task).to be_in_progress
+    end
+
+    it "should no-op if the user has not accepted the task" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+
+      task.assigned_user = user
+      task.status = :assigned
+      task.save
+
+      post :complete_task, params: {id: task.id, completion_token: task.completion_token}
+      task.reload
+      expect(task).to be_assigned
+    end
+
+    it "should no-op if the completion token is wrong" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+
+      task.assigned_user = user
+      task.status = :in_progress
+      task.save
+
+      post :complete_task, params: {id: task.id, completion_token: "foo"}
+      task.reload
+      expect(task).to be_in_progress
+    end
+
+    it "should mark the task as completed" do
+      task = tasks(:second_task)
+      user = users(:yihang)
+
+      task.assigned_user = user
+      task.status = :in_progress
+      task.save
+
+      post :complete_task, params: {id: task.id, completion_token: task.completion_token}
+      task.reload
+      expect(task).to be_completed
+    end
+  end
 end
