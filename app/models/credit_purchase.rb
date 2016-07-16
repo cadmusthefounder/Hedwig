@@ -12,4 +12,14 @@ class CreditPurchase < ApplicationRecord
       "approved" => "Approved"
     }[status]
   end
+
+  def approve!
+    return unless pending?
+
+    self.status = :approved
+    self.save
+
+    user.credit += amount
+    user.save
+  end
 end

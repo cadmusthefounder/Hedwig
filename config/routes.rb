@@ -35,4 +35,16 @@ Rails.application.routes.draw do
   end
 
   resources :credit_purchases
+
+  namespace :admin do
+    resources :credit_purchases do
+      collection do
+        get 'all', to: 'credit_purchases#all_index'
+        get 'pending', to: 'credit_purchases#pending_index'
+        get 'approved', to: 'credit_purchases#approved_index'
+      end
+
+      post 'approve', on: :member, to: 'credit_purchases#approve'
+    end
+  end
 end

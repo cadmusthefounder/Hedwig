@@ -20,4 +20,8 @@ module UserAuthentication
   def ensure_logged_in
     redirect_to new_session_path unless logged_in?
   end
+
+  def ensure_admin
+    redirect_to root_path unless current_user.admin?
+  end
 end
