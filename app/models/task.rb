@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
+  belongs_to :assigned_user, class_name: "User", optional: true
   has_many :messages
   has_many :interests
   has_many :interested_users, through: :interests, source: :user

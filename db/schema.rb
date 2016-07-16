@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611155204) do
+ActiveRecord::Schema.define(version: 20160716040813) do
 
   create_table "interests", force: :cascade do |t|
     t.integer  "task_id"
@@ -52,6 +51,8 @@ ActiveRecord::Schema.define(version: 20160611155204) do
     t.datetime "updated_at",                                            null: false
     t.integer  "status",                                    default: 0
     t.integer  "user_id"
+    t.integer  "assigned_user_id"
+    t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
   end
 
   create_table "users", force: :cascade do |t|
