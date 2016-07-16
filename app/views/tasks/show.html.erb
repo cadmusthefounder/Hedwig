@@ -11,6 +11,12 @@
 </p>
 
 <% if @task.user == current_user %>
+  <p>
+    Completion token: <code><%= @task.completion_token %></code>
+  </p>
+<% end %>
+
+<% if @task.user == current_user %>
   <% if @task.brand_new? %>
     <div class="interested-users">
       <ul class="list-group">
