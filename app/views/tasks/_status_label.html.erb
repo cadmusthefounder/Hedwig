@@ -1,0 +1,9 @@
+<% if task.brand_new? %>
+  <span class="label label-info">New</span>
+<% elsif task.assigned? %>
+  <span class="label label-warning">Assigned</span>
+<% elsif task.in_progress? %>
+  <span class="label label-primary">In Progress</span>
+<% else %>
+  <span class="label label-success">Completed</span>
+<% end %>
