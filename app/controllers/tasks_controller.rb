@@ -117,7 +117,7 @@ class TasksController < ApplicationController
       @task.status = :completed
       @task.save
 
-      current_user.credit += @task.price * 0.75
+      current_user.credit += @task.list_price
       current_user.save
     else
       render json: {

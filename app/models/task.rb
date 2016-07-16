@@ -46,6 +46,10 @@ class Task < ApplicationRecord
     end
   end
 
+  def list_price
+    0.75 * price
+  end
+
   def self.search(search)
     a = where('from_address LIKE ?', "%#{search}%")
     b = where('from_postal_code LIKE ?', "%#{search}%")
@@ -54,5 +58,4 @@ class Task < ApplicationRecord
     e = where('price LIKE ?', "%#{search}%")
     a.or(b).or(c).or(d).or(e)
   end
-
 end

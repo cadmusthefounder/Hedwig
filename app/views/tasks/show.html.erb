@@ -7,7 +7,11 @@
 </p>
 
 <p>
-  Price: <%= number_to_currency @task.price %>
+  Price: <%= number_to_currency @task.list_price %>
+
+  <% if @task.user == current_user %>
+    (You are paying <%= number_to_currency @task.price %>)
+  <% end %>
 </p>
 
 <% if @task.user == current_user %>
