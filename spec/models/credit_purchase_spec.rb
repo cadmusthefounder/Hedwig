@@ -26,4 +26,16 @@ RSpec.describe CreditPurchase, type: :model do
       expect(@credit_purchase).to respond_to(:user)
     end
   end
+
+  describe "status_string" do
+    it "should output 'Pending Approval' for pending" do
+      @credit_purchase.status = :pending
+      expect(@credit_purchase.status_string).to eq "Pending Approval"
+    end
+
+    it "should output 'Approved' for approved" do
+      @credit_purchase.status = :approved
+      expect(@credit_purchase.status_string).to eq "Approved"
+    end
+  end
 end

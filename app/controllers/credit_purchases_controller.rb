@@ -1,6 +1,10 @@
 class CreditPurchasesController < ApplicationController
   before_action :ensure_logged_in
 
+  def index
+    @credit_purchases = current_user.credit_purchases.order(created_at: :desc)
+  end
+
   def new
     @credit_purchase = CreditPurchase.new
   end

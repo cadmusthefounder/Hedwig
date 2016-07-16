@@ -5,4 +5,11 @@ class CreditPurchase < ApplicationRecord
 
   validates :amount, presence: true
   validates :status, presence: true
+
+  def status_string
+    {
+      "pending" => "Pending Approval",
+      "approved" => "Approved"
+    }[status]
+  end
 end
