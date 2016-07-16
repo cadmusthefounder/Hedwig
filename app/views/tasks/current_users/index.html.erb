@@ -1,12 +1,12 @@
-<% provide(:title, 'All tasks') %>
+<% provide(:title, 'My tasks') %>
 
-<h1>All tasks</h1>
+<h1>My tasks</h1>
 
 <%= will_paginate @tasks %>
 
 <div class="tasks-index">
   <ul class="list-group">
-    <%= render @tasks %>
+    <%= render partial: 'tasks/task', collection: @tasks %>
   </ul>
 </div>
 

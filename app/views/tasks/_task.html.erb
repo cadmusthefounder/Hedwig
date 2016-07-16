@@ -1,0 +1,26 @@
+<li class="list-group-item">
+  <span class="price">
+    <span class="badge"><%= number_to_currency task.price %></span>
+  </span>
+  <span class="info">
+    <%= task.from_address %>, <%= task.from_postal_code %> <i class="glyphicon glyphicon-arrow-right"></i> <%= task.to_address %>, <%= task.to_postal_code %>
+  </span>
+  <span class="express-interest">
+    <% if task.user == current_user %>
+      <%= link_to task, class: "btn btn-success btn-xs" do %>
+        <i class="glyphicon glyphicon-zoom-in"></i>
+        View
+      <% end %>
+    <% elsif task.interested_users.include?(current_user) %>
+      <%= link_to thread_messages_path(task.interests.where(user: current_user).first), class: "btn btn-info btn-xs" do %>
+        <i class="glyphicon glyphicon-envelope"></i>
+        Chat
+      <% end %>
+    <% else %>
+      <%= button_to threads_path, method: :post, params: {interest: {task_id: task}}, class: "btn btn-primary btn-xs" do %>
+        <i class="glyphicon glyphicon-star-empty"></i>
+        Express Interest
+      <% end %>
+    <% end %>
+  </span>
+</li>

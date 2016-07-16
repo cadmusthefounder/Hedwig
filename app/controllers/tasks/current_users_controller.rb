@@ -3,6 +3,5 @@ class Tasks::CurrentUsersController < ApplicationController
 
   def index
     @tasks = current_user.tasks.paginate(page: params[:page])
-    render 'tasks/index'
   end
 end
