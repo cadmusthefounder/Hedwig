@@ -46,4 +46,13 @@ class Task < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    a = where('from_address LIKE ?', "%#{search}%")
+    b = where('from_postal_code LIKE ?', "%#{search}%")
+    c = where('to_address LIKE ?', "%#{search}%")
+    d = where('to_postal_code LIKE ?', "%#{search}%")
+    e = where('price LIKE ?', "%#{search}%")
+    a.or(b).or(c).or(d).or(e)
+  end
+
 end
