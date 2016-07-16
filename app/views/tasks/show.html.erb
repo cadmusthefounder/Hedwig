@@ -10,20 +10,38 @@
   Price: <%= number_to_currency @task.price %>
 </p>
 
-<div class="interested-users">
-  <ul class="list-group">
-    <% @task.interests.includes(:user).each do |interest| %>
-      <li class="list-group-item">
-        <span class="user-name">
-          <%= interest.user.name %>
-        </span>
-        <span class="chat-button">
-          <%= link_to thread_messages_path(interest), class: "btn btn-info btn-xs" do %>
-            <i class="glyphicon glyphicon-envelope"></i>
-            Chat
-          <% end %>
-        </button>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<% if @task.user == current_user %>
+  <% if @task.brand_new? %>
+    <div class="interested-users">
+      <ul class="list-group">
+        <% @task.interests.includes(:user).each do |interest| %>
+          <li class="list-group-item">
+            <span class="user-name">
+              <%= interest.user.name %>
+            </span>
+
+            <% if @task.brand_new? %>
+              <span class="assign-button">
+                <%= button_to assign_task_path(@task), method: :post, params: {user_id: interest.user}, class: "btn btn-primary btn-xs" do %>
+                  <i class="glyphicon glyphicon-ok"></i>
+                  Assign
+                <% end %>
+              </span>
+            <% end %>
+
+            <span class="chat-button">
+              <%= link_to thread_messages_path(interest), class: "btn btn-info btn-xs" do %>
+                <i class="glyphicon glyphicon-envelope"></i>
+                Chat
+              <% end %>
+            </button>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% elsif @task.assigned? %>
+    Assigned to <%= @task.assigned_user.name %>.
+  <% end %>
+<% elsif @task.assigned_user == current_user %>
+  You are assigned to work on this task.
+<% end %>

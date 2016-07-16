@@ -15,13 +15,11 @@ Rails.application.routes.draw do
   get '/tasks/mine', to: 'tasks/current_users#index'
 
   resources :tasks do
+    post 'assign', on: :member
+
     resources :threads, only: :show do
       post 'create_message', on: :member, as: :create_message
     end
-  end
-
-  namespace :tasks do
-    resources :current_users
   end
 
   resources :threads, only: [:create, :show] do

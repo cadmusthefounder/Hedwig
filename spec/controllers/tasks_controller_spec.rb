@@ -45,4 +45,46 @@ RSpec.describe TasksController, :type => :controller do
     get :index
     expect(response).to render_template 'static_pages/home'
   end
+
+  describe "assign" do
+    it "should reject if user is not the owner" do
+      other_task = tasks(:second_task)
+      another_user = users(:another)
+      post :assign, params: {id: other_task.id, user_id: another_user.id}
+      other_task.reload
+      expect(other_task).to be_brand_new
+    end
+
+    it "should reject if user is assigning to herself" do
+      user = users(:yihang)
+      task = tasks(:first_task)
+      post :assign, params: {id: task.id, user_id: user.id}
+      task.reload
+      expect(task).to be_brand_new
+    end
+
+    it "should reject if assignee is not interested" do
+      user = users(:yihang)
+      assignee = users(:other)
+      task = tasks(:first_task)
+      interest = task.interests.find_by(user: assignee)
+      expect(interest).to be_nil # Ensure that assignee is not interested
+      post :assign, params: {id: task.id, user_id: assignee.id}
+      task.reload
+      expect(task).to be_brand_new
+    end
+
+    it "should assign to the user otherwise" do
+      user = users(:yihang)
+      assignee = users(:other)
+      task = tasks(:first_task)
+      task.interests.create(user: assignee)
+      interest = task.interests.find_by(user: assignee)
+      expect(interest).not_to be_nil
+      post :assign, params: {id: task.id, user_id: assignee.id}
+      task.reload
+      expect(task).to be_assigned
+      expect(task.assigned_user).to eq assignee
+    end
+  end
 end

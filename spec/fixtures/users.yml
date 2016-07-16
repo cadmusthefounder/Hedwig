@@ -9,3 +9,8 @@ other:
   name: other
   email: other@example.com
   account_kit_id: 654321
+
+another:
+  name: another
+  email: another@example.com
+  account_kit_id: 789

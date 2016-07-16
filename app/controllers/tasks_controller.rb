@@ -26,6 +26,32 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def assign
+    @task = Task.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    unless @task.user == current_user
+      flash[:error] = "This is not your task"
+      return render 'show'
+    end
+
+    if @user == current_user
+      flash[:warning] = "You cannot assign to yourself"
+      return render 'show'
+    end
+
+    unless @task.interests.find_by(user: @user)
+      flash[:warning] = "The user is not interested in this task"
+      return render 'show'
+    end
+
+    @task.status = :assigned
+    @task.assigned_user = @user
+    @task.save
+
+    render 'show'
+  end
+
   private
 
   def task_params
