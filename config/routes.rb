@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   resources :threads, only: [:create, :show] do
     resources :messages, only: [:index, :create]
   end
+
+  resources :credit_purchases
 end

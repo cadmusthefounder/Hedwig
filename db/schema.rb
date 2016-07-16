@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716110502) do
+ActiveRecord::Schema.define(version: 20160716134341) do
+
+  create_table "credit_purchases", force: :cascade do |t|
+    t.decimal  "amount",     default: "0.0", null: false
+    t.integer  "user_id"
+    t.integer  "status",     default: 0,     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_credit_purchases_on_user_id"
+  end
 
   create_table "interests", force: :cascade do |t|
     t.integer  "task_id"

@@ -1,0 +1,10 @@
+<h1>Purchase Credit</h1>
+
+<%= form_for(@credit_purchase) do |f| %>
+  <div class="form-group">
+    <%= f.label :amount %>
+    <%= f.number_field :amount, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
