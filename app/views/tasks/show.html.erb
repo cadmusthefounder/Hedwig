@@ -51,7 +51,23 @@
     </div>
   <% elsif @task.assigned? %>
     Assigned to <%= @task.assigned_user.name %>.
+    <%= render 'tasks/owner_chat_button', task: @task %>
+  <% elsif @task.in_progress? %>
+    <%= @task.assigned_user.name %> is working on this.
+    <%= render 'tasks/owner_chat_button', task: @task %>
+  <% else %>
+    <%= @task.assigned_user.name %> has completed this task.
   <% end %>
 <% elsif @task.assigned_user == current_user %>
-  You are assigned to work on this task.
+  <% if @task.assigned? %>
+    You are assigned to work on this task.
+    <%= render 'tasks/accept_button', task: @task %>
+    <%= render 'tasks/reject_button', task: @task %>
+    <%= render 'tasks/chat_button', task: @task %>
+  <% elsif @task.in_progress? %>
+    You are working on this task.
+    <%= render 'tasks/chat_button', task: @task %>
+  <% else %>
+    You have completed this task.
+  <% end %>
 <% end %>
