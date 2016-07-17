@@ -31,22 +31,16 @@ Rails.application.routes.draw do
   end
 
   resources :threads, only: [:create, :show] do
-    resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :update]
   end
 
-  resources :credit_purchases, only: [:new, :create]
-  resources :cash_out_requests, only: [:new, :create]
   resources :transactions, only: :index
+  namespace :transactions do
+    resources :credit_purchases, only: [:new, :create]
+    resources :cash_out_requests, only: [:new, :create]
+  end
 
   namespace :admin do
-    resources :credit_purchases do
-      collection do
-        get 'all', to: 'credit_purchases#all_index'
-        get 'pending', to: 'credit_purchases#pending_index'
-        get 'approved', to: 'credit_purchases#approved_index'
-      end
-
-      post 'approve', on: :member, to: 'credit_purchases#approve'
-    end
+    resources :transactions, only: [:index, :update]
   end
 end

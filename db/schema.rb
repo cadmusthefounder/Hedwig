@@ -10,25 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717062741) do
-
-  create_table "cash_out_requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.decimal  "amount",     default: "0.0", null: false
-    t.integer  "status",     default: 0,     null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["user_id"], name: "index_cash_out_requests_on_user_id"
-  end
-
-  create_table "credit_purchases", force: :cascade do |t|
-    t.decimal  "amount",     default: "0.0", null: false
-    t.integer  "user_id"
-    t.integer  "status",     default: 0,     null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["user_id"], name: "index_credit_purchases_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 20160717070157) do
 
   create_table "interests", force: :cascade do |t|
     t.integer  "task_id"
@@ -72,6 +54,16 @@ ActiveRecord::Schema.define(version: 20160717062741) do
     t.integer  "assigned_user_id"
     t.string   "completion_token"
     t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",           default: "0.0", null: false
+    t.integer  "status",           default: 0,     null: false
+    t.integer  "transaction_type", default: 0,     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -69,11 +69,7 @@ RSpec.describe User, :type => :model do
     expect(@user).to respond_to(:assigned_tasks)
   end
 
-  it "should respond to credit_purchases" do
-    expect(@user).to respond_to(:credit_purchases)
-  end
-
-  it "should respond to cash_out_requests" do
-    expect(@user).to respond_to(:cash_out_requests)
+  it "should respond to transactions" do
+    expect(@user).to respond_to(:transactions)
   end
 end

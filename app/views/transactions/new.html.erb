@@ -1,18 +1,17 @@
-<h1>Request Cash Out</h1>
+<h1><%= @title %></h1>
 
-<%= form_for(@cash_out_request) do |f| %>
+<%= form_for(@transaction, url: {action: "create"}) do |f| %>
   <div class="form-group">
     <%= f.label :amount %>
-
     <div class="input-group">
       <span class="input-group-addon">$</span>
       <%= f.number_field :amount, class: "form-control" %>
     </div>
 
-    <% @cash_out_request.errors.full_messages_for(:amount).each do |msg| %>
+    <% @transaction.errors.full_messages_for(:amount).each do |msg| %>
       <p class="text-danger"><%= msg %></p>
     <% end %>
   </div>
 
-  <%= f.submit "Submit", class: "btn btn-default" %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
