@@ -22,3 +22,5 @@
 
 # Vim
 *.swp
+
+coverage
