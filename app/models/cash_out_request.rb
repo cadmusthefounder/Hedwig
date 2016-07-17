@@ -9,4 +9,8 @@ class CashOutRequest < ApplicationRecord
       "approved" => "Approved"
     }[status]
   end
+
+  def type
+    "Cash Out"
+  end
 end

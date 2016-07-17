@@ -12,6 +12,7 @@ class CashOutRequestsController < ApplicationController
       @cash_out_request.errors.add(:amount, :too_high, message: "is higher than your available credit")
       render 'new'
     elsif @cash_out_request.save
+      redirect_to transactions_path
     else
       render 'new'
     end

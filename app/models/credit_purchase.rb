@@ -22,4 +22,8 @@ class CreditPurchase < ApplicationRecord
     user.credit += amount
     user.save
   end
+
+  def type
+    "Credit Purchase"
+  end
 end

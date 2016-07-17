@@ -34,8 +34,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
-  resources :credit_purchases
-  resources :cash_out_requests
+  resources :credit_purchases, only: [:new, :create]
+  resources :cash_out_requests, only: [:new, :create]
+  resources :transactions, only: :index
 
   namespace :admin do
     resources :credit_purchases do

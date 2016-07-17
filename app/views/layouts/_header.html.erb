@@ -51,7 +51,9 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Top Up", new_credit_purchase_path %></li>
-              <li><%= link_to "Transaction History", credit_purchases_path %></li>
+              <li><%= link_to "Cash Out", new_cash_out_request_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Transaction History", transactions_path %></li>
             </ul>
           </li>
           <li><%= link_to "Logout", sessions_path, method: :delete %></li>
