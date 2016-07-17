@@ -21,8 +21,4 @@ class ThreadsController < ApplicationController
   def interest_params
     params.require(:interest).permit(:task_id)
   end
-
-  def message_params
-    params.require(:message).permit(:message)
-  end
 end

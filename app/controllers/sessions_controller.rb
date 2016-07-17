@@ -39,10 +39,4 @@ class SessionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def session_params
-      params.require(:session).permit(:user_id, :remember_token)
-    end
 end
