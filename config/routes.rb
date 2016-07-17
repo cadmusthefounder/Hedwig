@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   end
 
   resources :credit_purchases
+  resources :cash_out_requests
 
   namespace :admin do
     resources :credit_purchases do

@@ -72,4 +72,8 @@ RSpec.describe User, :type => :model do
   it "should respond to credit_purchases" do
     expect(@user).to respond_to(:credit_purchases)
   end
+
+  it "should respond to cash_out_requests" do
+    expect(@user).to respond_to(:cash_out_requests)
+  end
 end
