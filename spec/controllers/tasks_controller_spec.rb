@@ -20,6 +20,19 @@ RSpec.describe TasksController, :type => :controller do
     expect(response).to render_template :show
   end
 
+  it "should post create and deduct user's credit when task is created" do
+    user = @yihangs_session.user
+    task_params = {from_address: "123 Main Rd", from_postal_code: "123456",
+                   to_address: "456 Main Rd", to_postal_code: "123456",
+                   price: 1.23}
+    expect do
+      post :create, params: {task: task_params}
+      user.reload
+    end.to change { user.credit }.by(-1.23)
+    expect(response).to be_success
+    expect(response).to render_template :show
+  end
+
   it "should post create with errors when some of the params are missing" do
     task_params = {from_address: "foobar"}
     expect { post :create, params: {task: task_params} }.not_to change { Task.count }
@@ -31,6 +44,16 @@ RSpec.describe TasksController, :type => :controller do
     cookies.delete(:remember_token)
     post :create, params: {task: {from_address: "foobar"}}
     expect(response).to redirect_to new_session_path
+  end
+
+  it "should post create with errors when the user does not have enough credit" do
+    user = @yihangs_session.user
+    task_params = {from_address: "123 Main Rd", from_postal_code: "123456",
+                   to_address: "456 Main Rd", to_postal_code: "123456",
+                   price: user.credit + 1}
+    expect { post :create, params: {task: task_params} }.not_to change { Task.count }
+    expect(response).to be_success
+    expect(response).to render_template :new
   end
 
   it "should get show" do
@@ -187,12 +210,17 @@ RSpec.describe TasksController, :type => :controller do
       expect(@task).to be_in_progress
     end
 
-    it "should mark the task as completed" do
+    it "should mark the task as completed and increase the user's credit" do
+      expect(@task.price).to be > 0
+
       @task.assigned_user = @user
       @task.status = :in_progress
       @task.save
 
-      post :complete_task, params: {id: @task.id, completion_token: @task.completion_token}
+      expect do
+        post :complete_task, params: {id: @task.id, completion_token: @task.completion_token}
+        @user.reload
+      end.to change { @user.credit }.by @task.list_price
       @task.reload
       expect(@task).to be_completed
     end
