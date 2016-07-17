@@ -86,6 +86,12 @@ RSpec.describe Task, :type => :model do
     expect(@first_task).to respond_to :assigned_user
   end
 
+  describe "default values" do
+    it "should be 0 for price" do
+      expect(Task.new.price).to eq 0
+    end
+  end
+
   describe "brand new tasks" do
     it "should return true for brand_new? and false for assigned?, in_progress?, completed?" do
       task = tasks(:brand_new_task)

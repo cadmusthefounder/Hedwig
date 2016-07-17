@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
 
-    if (@task.price || 0) > current_user.credit
+    if @task.price > current_user.credit
       @task.errors.add(:price, :too_high, message: "is higher than your available credit")
       render 'new'
     elsif @task.save

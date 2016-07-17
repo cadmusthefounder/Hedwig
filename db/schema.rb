@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716141917) do
+ActiveRecord::Schema.define(version: 20160717005822) do
 
   create_table "credit_purchases", force: :cascade do |t|
     t.decimal  "amount",     default: "0.0", null: false
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20160716141917) do
     t.string   "from_postal_code"
     t.string   "to_address"
     t.string   "to_postal_code"
-    t.decimal  "price",            precision: 10, scale: 2
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.decimal  "price",            precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.integer  "status",                                    default: 0
     t.integer  "user_id"
     t.integer  "assigned_user_id"
