@@ -7,3 +7,7 @@ yihangs_session:
 others_session:
   user: other
   remember_token: 54321
+
+admins_session:
+  user: admin
+  remember_token: i_am_admin

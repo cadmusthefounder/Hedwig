@@ -11,6 +11,23 @@ RSpec.describe Transaction, type: :model do
     end
   end
 
+  describe "validations" do
+    before(:each) do
+      @transaction = transactions(:pending_purchase)
+    end
+
+    it "fixture object should be valid" do
+      expect(@transaction).to be_valid
+    end
+
+    it "amount should be positive" do
+      @transaction.amount = -5
+      expect(@transaction).not_to be_valid
+      @transaction.amount = 0
+      expect(@transaction).not_to be_valid
+    end
+  end
+
   describe "status_string" do
     it "should respond to status_string" do
       expect(@transaction).to respond_to(:status_string)

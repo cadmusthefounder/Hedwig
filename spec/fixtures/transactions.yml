@@ -1,0 +1,23 @@
+pending_purchase:
+  amount: 100
+  user: yihang
+  status: pending
+  transaction_type: credit_purchase
+
+approved_purchase:
+  amount: 100
+  user: yihang
+  status: approved
+  transaction_type: credit_purchase
+
+pending_cash_out:
+  amount: 100
+  user: yihang
+  status: pending
+  transaction_type: cash_out_request
+
+approved_cash_out:
+  amount: 100
+  user: yihang
+  status: approved
+  transaction_type: cash_out_request

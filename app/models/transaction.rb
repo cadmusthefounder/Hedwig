@@ -1,6 +1,8 @@
 class Transaction < ActiveRecord::Base
   belongs_to :user
 
+  validates :amount, numericality: { greater_than: 0 }
+
   enum status: [:pending, :approved]
   enum transaction_type: [:credit_purchase, :cash_out_request]
 

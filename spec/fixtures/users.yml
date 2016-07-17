@@ -15,3 +15,9 @@ another:
   name: another
   email: another@example.com
   account_kit_id: 789
+
+admin:
+  name: admin
+  email: admin@example.com
+  account_kit_id: admin
+  admin: true
