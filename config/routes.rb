@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   get '/update_profile', to: 'users#edit', as: :update_profile
   patch '/update_profile', to: 'users#update'
   put '/update_profile', to: 'users#update'
-  resources :sessions
+
+  resources :sessions, only: [:new, :create]
   delete '/sessions', to: 'sessions#destroy'
 
-  resources :tasks do
+  resources :tasks, only: [:index, :new, :create, :show] do
     member do
       post 'assign'
       post 'accept', to: 'tasks#accept_assignment'
