@@ -9,6 +9,10 @@
     <% if task.user == current_user %>
       <%= render 'tasks/status_label', task: task %>
       <%= render 'tasks/view_button', task: task %>
+
+      <% if task.assigned? || task.in_progress? %>
+        <%= render 'tasks/owner_chat_button', task: task %>
+      <% end %>
     <% elsif task.brand_new? %>
       <% if task.interested_users.include?(current_user) %>
         <%= render 'tasks/chat_button', task: task %>
@@ -24,6 +28,7 @@
     <% elsif task.in_progress? %>
       <% if task.assigned_user == current_user %>
         <%= render 'tasks/completion_button', task: task %>
+        <%= render 'tasks/chat_button', task: task %>
       <% end %>
     <% end %>
   </span>
