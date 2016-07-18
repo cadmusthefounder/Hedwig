@@ -29,6 +29,7 @@ gem 'rest-client', '~> 1.8'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'will_paginate',  '~> 3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'react-rails', '~> 1.8'
 
 gem 'simplecov', :require => false, :group => :test
 

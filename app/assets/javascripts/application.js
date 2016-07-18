@@ -17,4 +17,7 @@
 //= require bootstrap/collapse
 //= require bootstrap/dropdown
 //= require bootstrap/modal
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
