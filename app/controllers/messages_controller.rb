@@ -4,9 +4,10 @@ class MessagesController < ApplicationController
   before_action :ensure_authorized
 
   def index
-    # TODO lazy load the messages
-    # @messages = @task.messages.where(user: [@user, @task.user]).order(:created_at)
-    @messages = @interest.messages.order(:created_at)
+    # For simplicity, we assume that (a.id <=> b.id) == (a.created_at <=> b.created_at)
+    @messages = @interest.messages
+    @messages = @messages.where('id < ?', params[:before]) if params[:before]
+    @messages = @messages.last(20)
   end
 
   def create
