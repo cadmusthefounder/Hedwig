@@ -16,7 +16,8 @@ class MessagesController < ApplicationController
     @message = @interest.messages.create(message: message_params[:message], user: current_user)
 
     # TODO error handling
-    ChatChannel.broadcast_to(@interest, {id: @message.id, message: @message.message, sender: current_user.name})
+    ChatChannel.broadcast_to(@interest.user, @message)
+    ChatChannel.broadcast_to(@interest.task.user, @message)
   end
 
 

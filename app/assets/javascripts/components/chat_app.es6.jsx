@@ -30,16 +30,15 @@ class ChatApp extends React.Component {
     this.loadMessagesForCurrentThread();
 
     this.subscription = App.cable.subscriptions.create({
-      channel: "ChatChannel",
-      thread_id: this.currentThreadID
+      channel: "ChatChannel"
     }, {
       received: data => {
         const message = new Message(data);
-        const {messages} = this.state;
+        const messages = this.state.messagesStore.get(this.currentThreadID(), Immutable.List());
 
         if (!messages.find(m => m.id === message.id)) {
           this.setState({
-            messages: messages.push(message)
+            messagesStore: this.state.messagesStore.set(this.currentThreadID(), messages.push(message))
           });
         }
       }
