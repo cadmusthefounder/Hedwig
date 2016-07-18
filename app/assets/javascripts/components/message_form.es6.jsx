@@ -16,6 +16,7 @@ class MessageForm extends React.Component {
         <form onSubmit={ this.onSubmit }>
           <input type="text"
                  className="form-control"
+                 placeholder="Hello!"
                  value={ this.state.message }
                  onChange={ this.onMessageChange } />
           <button className="btn btn-success">Send</button>

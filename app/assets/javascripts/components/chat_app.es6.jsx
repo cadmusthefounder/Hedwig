@@ -64,6 +64,7 @@ class ChatApp extends React.Component {
                      currentUser={ this.state.currentUser } />
         <MessagesDisplay messages={ this.state.messagesStore.get(this.currentThreadID(), Immutable.List()) }
                          users={ this.state.users }
+                         currentUser={ this.state.currentUser }
                          onSend={ this.onSend } />
       </div>
     );

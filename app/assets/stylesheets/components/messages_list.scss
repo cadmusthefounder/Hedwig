@@ -1,4 +1,12 @@
 .MessagesList {
   flex-grow: 1;
   overflow-y: scroll;
+
+  .message {
+    padding: 5px;
+  }
+
+  .message.sent {
+    text-align: right;
+  }
 }
