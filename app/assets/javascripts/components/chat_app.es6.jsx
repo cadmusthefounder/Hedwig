@@ -7,10 +7,13 @@ class ChatApp extends React.Component {
       messagesStore: Immutable.Map(), // Maps from thread_id to list of messages
       tasks: Immutable.Map(),
       users: Immutable.Map(),
+      loadingThreads: Immutable.Set(),
+      completelyLoadedThreads: Immutable.Set(),
       currentUser: 0
     };
 
     this.onSend = this.onSend.bind(this);
+    this.loadMessagesForCurrentThread = this.loadMessagesForCurrentThread.bind(this);
   }
 
   componentDidMount() {
@@ -65,7 +68,10 @@ class ChatApp extends React.Component {
         <MessagesDisplay messages={ this.state.messagesStore.get(this.currentThreadID(), Immutable.List()) }
                          users={ this.state.users }
                          currentUser={ this.state.currentUser }
-                         onSend={ this.onSend } />
+                         onSend={ this.onSend }
+                         completelyLoaded={ this.state.completelyLoadedThreads.has(this.currentThreadID()) }
+                         loading={ this.state.loadingThreads.has(this.currentThreadID()) }
+                         loadMore={ this.loadMessagesForCurrentThread }/>
       </div>
     );
   }
@@ -89,6 +95,19 @@ class ChatApp extends React.Component {
 
   loadMessagesForCurrentThread() {
     const id = this.currentThreadID();
+
+    if (this.state.loadingThreads.has(id)) {
+      return;
+    }
+
+    if (this.state.completelyLoadedThreads.has(id)) {
+      return;
+    }
+
+    this.setState({
+      loadingThreads: this.state.loadingThreads.add(id)
+    });
+
     const messages = this.state.messagesStore.get(id, Immutable.List());
     const params = {};
 
@@ -99,8 +118,16 @@ class ChatApp extends React.Component {
     $.get(`/threads/${id}/messages.json`, params).done(data => {
       const newMessages = Immutable.List(data).map(message => new Message(message));
       const store = this.state.messagesStore.set(id, newMessages.concat(messages));
+      let { completelyLoadedThreads } = this.state;
+
+      if (data.length === 0) {
+        completelyLoadedThreads = completelyLoadedThreads.add(id);
+      }
+
       this.setState({
-        messagesStore: store
+        messagesStore: store,
+        loadingThreads: this.state.loadingThreads.remove(id),
+        completelyLoadedThreads
       });
     });
   }

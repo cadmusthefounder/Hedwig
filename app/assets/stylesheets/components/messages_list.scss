@@ -10,4 +10,39 @@
   .message.sent {
     text-align: right;
   }
+
+  .spinner {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bolder;
+
+    .glyphicon.glyphicon-refresh {
+      -webkit-animation: spinner 2s infinite linear;
+              animation: spinner 2s infinite linear;
+    }
+  }
+}
+
+// Copied from FontAwesome
+// https://github.com/FortAwesome/Font-Awesome/blob/8e241f209faa1dd2182c9fdc9c352d8806504a4e/scss/_animated.scss
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
 }
