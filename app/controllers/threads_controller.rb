@@ -1,6 +1,10 @@
 class ThreadsController < ApplicationController
   before_action :ensure_logged_in
 
+  def index
+    @threads = Interest.accessible_by(current_user).order(updated_at: :desc)
+  end
+
   def create
     @task = Task.find(interest_params[:task_id])
 

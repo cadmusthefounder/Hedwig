@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :threads, only: :create do
+  resources :threads, only: [:index, :create] do
     resources :messages, only: [:index, :create]
   end
 
