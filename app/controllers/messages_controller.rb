@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
   before_action :extract_interest
   before_action :ensure_authorized
 
+  layout "layouts/application_chat", only: :index
+
   def index
     # For simplicity, we assume that (a.id <=> b.id) == (a.created_at <=> b.created_at)
     @messages = @interest.messages

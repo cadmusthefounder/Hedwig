@@ -1,0 +1,10 @@
+.MessageForm {
+  form {
+    display: flex;
+
+    input {
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+  }
+}

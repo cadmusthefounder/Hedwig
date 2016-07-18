@@ -1,0 +1,13 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= full_title(yield(:title)) %></title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= render "layouts/shim" %>
+
+  <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+  <script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>
+</head>
