@@ -65,13 +65,15 @@ class ChatApp extends React.Component {
                      tasks={ this.state.tasks }
                      users={ this.state.users }
                      currentUser={ this.state.currentUser } />
-        <MessagesDisplay messages={ this.state.messagesStore.get(this.currentThreadID(), Immutable.List()) }
-                         users={ this.state.users }
-                         currentUser={ this.state.currentUser }
-                         onSend={ this.onSend }
-                         completelyLoaded={ this.state.completelyLoadedThreads.has(this.currentThreadID()) }
-                         loading={ this.state.loadingThreads.has(this.currentThreadID()) }
-                         loadMore={ this.loadMessagesForCurrentThread }/>
+        <div className="detail-pane">
+          <MessagesList messages={ this.state.messagesStore.get(this.currentThreadID(), Immutable.List()) }
+                        users={ this.state.users }
+                        currentUser={ this.state.currentUser }
+                        completelyLoaded={ this.state.completelyLoadedThreads.has(this.currentThreadID()) }
+                        loading={ this.state.loadingThreads.has(this.currentThreadID()) }
+                        loadMore={ this.loadMessagesForCurrentThread }/>
+          <MessageForm onSend={ this.onSend } />
+        </div>
       </div>
     );
   }
