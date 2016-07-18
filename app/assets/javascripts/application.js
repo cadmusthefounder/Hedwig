@@ -17,6 +17,7 @@
 //= require bootstrap/collapse
 //= require bootstrap/dropdown
 //= require bootstrap/modal
+//= require immutable
 //= require react
 //= require react_ujs
 //= require components

@@ -59,3 +59,7 @@ group :production do
   gem 'rails_12factor'
   gem 'redis', '~> 3.0'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-immutable', '~> 3.8.1'
+end
