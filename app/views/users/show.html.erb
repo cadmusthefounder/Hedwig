@@ -1,1 +1,2 @@
+<% provide(:title, current_user.name) %>
 <%= current_user.name %>, <%= current_user.email %>, <%= admin = "Admin status: " + current_user.admin.to_s %>

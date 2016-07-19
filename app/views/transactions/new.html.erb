@@ -1,3 +1,5 @@
+<% provide(:title, @title) %>
+
 <h1><%= @title %></h1>
 
 <%= form_for(@transaction, url: {action: "create"}) do |f| %>
