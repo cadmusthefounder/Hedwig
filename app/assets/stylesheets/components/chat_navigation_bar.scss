@@ -1,0 +1,12 @@
+.ChatNavigationBar {
+  nav {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+    font-size: 2rem;
+  }
+
+  @media(min-width: 751px) {
+    display: none;
+  }
+}

@@ -68,13 +68,23 @@ class ChatApp extends React.Component {
   }
 
   render () {
+    let pane = "detail";
+
+    if ("master" in this.props.location.query) {
+      pane = "master"
+    }
+
     return (
-      <div className="ChatApp">
-        <ThreadsList threads={ this.state.threads }
-                     tasks={ this.state.tasks }
-                     users={ this.state.users }
-                     currentUser={ this.state.currentUser } />
+      <div className={ `ChatApp ${pane}` }>
+        <div className="master-pane">
+          <ThreadsList threads={ this.state.threads }
+                       tasks={ this.state.tasks }
+                       users={ this.state.users }
+                       currentUser={ this.state.currentUser } />
+        </div>
+
         <div className="detail-pane">
+          <ChatNavigationBar />
           <MessagesList messages={ this.state.messagesStore.get(this.currentThreadID(), Immutable.List()) }
                         users={ this.state.users }
                         currentUser={ this.state.currentUser }
