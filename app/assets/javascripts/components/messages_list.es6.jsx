@@ -42,7 +42,7 @@ class MessagesList extends React.Component {
 
     if (messages.size === 0 || nextMessages.size === 0) {
       this.scrollMode = 'bottom';
-    } else if (firstMessage.interest_id !== nextFirstMessage.interest_id) { // Change thread
+    } else if (firstMessage.thread_id !== nextFirstMessage.thread_id) { // Change thread
       this.scrollMode = 'bottom';
     } else if (lastMessage.id !== nextLastMessage.id && atBottom) { // Append and looking at last message
       this.scrollMode = 'bottom';

@@ -37,11 +37,20 @@ class ChatApp extends React.Component {
     }, {
       received: data => {
         const message = new Message(data);
-        const messages = this.state.messagesStore.get(this.currentThreadID(), Immutable.List());
+        const threadID = message.thread_id;
+        let messages = this.state.messagesStore.get(threadID, Immutable.List());
 
         if (!messages.find(m => m.id === message.id)) {
+          messages = messages.push(message).sortBy(m => m.created_at);
+
+          let { threads } = this.state;
+          const threadIndex = threads.findIndex(t => t.id === threadID);
+          const thread = threads.get(threadIndex).set("updated_at", messages.last().created_at);
+          threads = threads.set(threadIndex, thread).sortBy(t => t.updated_at).reverse();
+
           this.setState({
-            messagesStore: this.state.messagesStore.set(this.currentThreadID(), messages.push(message))
+            messagesStore: this.state.messagesStore.set(threadID, messages),
+            threads
           });
         }
       }
