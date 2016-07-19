@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   patch '/update_profile', to: 'users#update'
   put '/update_profile', to: 'users#update'
 
-  resources :users
-
   resources :sessions, only: [:new, :create]
   delete '/sessions', to: 'sessions#destroy'
 
