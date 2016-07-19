@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   get 'faq'             =>  'static_pages#faq'
   get 'terms_of_use'    =>  'static_pages#terms_of_use'
   get 'privacy_policy'  =>  'static_pages#privacy_policy'
+  get 'my_profile'      =>  'users#show'
 
   get '/update_profile', to: 'users#edit', as: :update_profile
   patch '/update_profile', to: 'users#update'
   put '/update_profile', to: 'users#update'
+
+  resources :users
 
   resources :sessions, only: [:new, :create]
   delete '/sessions', to: 'sessions#destroy'
