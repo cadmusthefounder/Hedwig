@@ -17,6 +17,10 @@ RSpec.describe Interest, :type => :model do
     expect(@interest).to respond_to :messages
   end
 
+  it "should respond to active?" do
+    expect(@interest).to respond_to(:active?)
+  end
+
   describe "accessible_by" do
     it "should return all interests accessible by the specified user" do
       user = users(:yihang)
@@ -39,6 +43,55 @@ RSpec.describe Interest, :type => :model do
           expect(accessible_interests).to include interest
         end
       end
+    end
+  end
+
+  describe "active?" do
+    before(:each) do
+      @user = users(:other)
+    end
+
+    it "should be true for brand_new task" do
+      brand_new_task = tasks(:brand_new_task)
+      interest = brand_new_task.interests.create!(user: @user)
+      expect(interest).to be_active
+    end
+
+    it "should be true for assigned task if the user is the same as the assigned user" do
+      assigned_task = tasks(:assigned_task)
+      assigned_task.update!(assigned_user: @user)
+      interest = assigned_task.interests.create!(user: @user)
+      expect(interest).to be_active
+    end
+
+    it "should be false for assigned task if the user is not the same as the assigned user" do
+      assigned_task = tasks(:assigned_task)
+      assigned_task.update!(assigned_user_id: @user.id + 1)
+      interest = assigned_task.interests.create!(user: @user)
+      expect(interest).not_to be_active
+    end
+
+    it "should be true for in_progress task if the user is the same as the assigned user" do
+      in_progress_task = tasks(:in_progress_task)
+      in_progress_task.update!(assigned_user: @user)
+      interest = in_progress_task.interests.create!(user: @user)
+      expect(interest).to be_active
+    end
+
+    it "should be false for in_progress task if the user is not the same as the assigned user" do
+      in_progress_task = tasks(:in_progress_task)
+      in_progress_task.update!(assigned_user_id: @user.id + 1)
+      interest = in_progress_task.interests.create!(user: @user)
+      expect(interest).not_to be_active
+    end
+
+    it "should be false for completed task" do
+      completed_task = tasks(:completed_task)
+      completed_task.update!(assigned_user: @user)
+      interest = completed_task.interests.create!(user: @user)
+      expect(interest).not_to be_active
+      completed_task.update!(assigned_user_id: @user.id + 1)
+      expect(interest).not_to be_active
     end
   end
 end
