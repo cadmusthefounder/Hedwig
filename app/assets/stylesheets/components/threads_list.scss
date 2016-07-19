@@ -18,7 +18,7 @@
 
   @media(min-width: 751px) {
     .item.active {
-      background-color: #FAEFED;
+      background-color: lighten($brand-primary, 52);
     }
   }
 }
