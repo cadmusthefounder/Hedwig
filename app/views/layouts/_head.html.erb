@@ -9,5 +9,9 @@
   <%= render "layouts/shim" %>
 
   <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
-  <script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>
+  <% if Rails.env.production? %>
+    <script src="https://npmcdn.com/react-router/umd/ReactRouter.min.js"></script>
+  <% else %>
+    <script src="https://npmcdn.com/react-router/umd/ReactRouter.js"></script>
+  <% end %>
 </head>
