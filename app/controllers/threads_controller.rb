@@ -2,7 +2,7 @@ class ThreadsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @threads = Interest.accessible_by(current_user).order(updated_at: :desc)
+    @threads = Interest.active.accessible_by(current_user).order(updated_at: :desc)
     @tasks = Task.where(id: @threads.pluck(:task_id))
     user_ids = @threads.pluck(:user_id) + @tasks.pluck(:user_id)
     @users = User.where(id: user_ids)

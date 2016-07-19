@@ -55,6 +55,7 @@ RSpec.describe Interest, :type => :model do
       brand_new_task = tasks(:brand_new_task)
       interest = brand_new_task.interests.create!(user: @user)
       expect(interest).to be_active
+      expect(Interest.active).to include(interest)
     end
 
     it "should be true for assigned task if the user is the same as the assigned user" do
@@ -62,6 +63,7 @@ RSpec.describe Interest, :type => :model do
       assigned_task.update!(assigned_user: @user)
       interest = assigned_task.interests.create!(user: @user)
       expect(interest).to be_active
+      expect(Interest.active).to include(interest)
     end
 
     it "should be false for assigned task if the user is not the same as the assigned user" do
@@ -69,6 +71,7 @@ RSpec.describe Interest, :type => :model do
       assigned_task.update!(assigned_user_id: @user.id + 1)
       interest = assigned_task.interests.create!(user: @user)
       expect(interest).not_to be_active
+      expect(Interest.active).not_to include(interest)
     end
 
     it "should be true for in_progress task if the user is the same as the assigned user" do
@@ -76,6 +79,7 @@ RSpec.describe Interest, :type => :model do
       in_progress_task.update!(assigned_user: @user)
       interest = in_progress_task.interests.create!(user: @user)
       expect(interest).to be_active
+      expect(Interest.active).to include(interest)
     end
 
     it "should be false for in_progress task if the user is not the same as the assigned user" do
@@ -83,6 +87,7 @@ RSpec.describe Interest, :type => :model do
       in_progress_task.update!(assigned_user_id: @user.id + 1)
       interest = in_progress_task.interests.create!(user: @user)
       expect(interest).not_to be_active
+      expect(Interest.active).not_to include(interest)
     end
 
     it "should be false for completed task" do
@@ -90,8 +95,10 @@ RSpec.describe Interest, :type => :model do
       completed_task.update!(assigned_user: @user)
       interest = completed_task.interests.create!(user: @user)
       expect(interest).not_to be_active
+      expect(Interest.active).not_to include(interest)
       completed_task.update!(assigned_user_id: @user.id + 1)
       expect(interest).not_to be_active
+      expect(Interest.active).not_to include(interest)
     end
   end
 end
