@@ -65,6 +65,10 @@ class MessagesList extends React.Component {
     } else if (this.scrollMode === 'stick') {
       node.scrollTop = this.scrollTop + (node.scrollHeight - this.scrollHeight);
     }
+
+    if (node.scrollTop === 0) {
+      this.props.loadMore();
+    }
   }
 
   componentWillUnmount() {
