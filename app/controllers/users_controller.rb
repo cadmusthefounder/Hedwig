@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :ensure_logged_in
 
+  def show
+    @user = current_user
+  end
+
   def edit
     @user = current_user
   end
