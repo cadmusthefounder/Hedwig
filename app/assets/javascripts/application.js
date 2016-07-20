@@ -20,6 +20,7 @@
 //= require immutable
 //= require react
 //= require react_ujs
+//= require utils
 //= require components
 //= require models
 //= require_tree .

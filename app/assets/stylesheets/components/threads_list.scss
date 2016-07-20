@@ -16,6 +16,10 @@
     border-bottom: 1px solid gray;
   }
 
+  .item.unread {
+    font-weight: bold;
+  }
+
   @media(min-width: 751px) {
     .item.active {
       background-color: lighten($brand-primary, 52);

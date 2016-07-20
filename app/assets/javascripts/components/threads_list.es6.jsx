@@ -7,7 +7,7 @@ class ThreadsList extends React.Component {
     const { Link } = ReactRouter;
 
     return (
-      <Link className="item"
+      <Link className={ classnames("item", {unread: !thread.read}) }
             key={ thread.id }
             to={ `/threads/${thread.id}/messages`}
             activeClassName="active">

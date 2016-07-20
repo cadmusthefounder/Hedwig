@@ -2,6 +2,7 @@ const BaseThread = Immutable.Record({
   id: undefined,
   task_id: undefined,
   user_id: undefined,
+  read: undefined,
   last_sent_at: undefined,
   created_at: undefined,
   updated_at: undefined

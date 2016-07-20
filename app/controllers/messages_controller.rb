@@ -15,6 +15,14 @@ class MessagesController < ApplicationController
   def create
     @message = @interest.messages.create(message: message_params[:message], user: current_user)
 
+    if @interest.user == current_user
+      @interest.update(read_by_owner: false)
+      ThreadChannel.broadcast_to(@interest.task.user, action: "mark_as_unread", id: @interest.id)
+    else
+      @interest.update(read_by_user: false)
+      ThreadChannel.broadcast_to(@interest.user, action: "mark_as_unread", id: @interest.id)
+    end
+
     # TODO error handling
     ChatChannel.broadcast_to(@interest.user, @message)
     ChatChannel.broadcast_to(@interest.task.user, @message)

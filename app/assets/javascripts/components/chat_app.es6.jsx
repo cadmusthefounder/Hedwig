@@ -32,7 +32,7 @@ class ChatApp extends React.Component {
 
     this.loadMessagesForCurrentThread();
 
-    this.subscription = App.cable.subscriptions.create({
+    this.chatChannelSubscription = App.cable.subscriptions.create({
       channel: "ChatChannel"
     }, {
       received: data => {
@@ -55,16 +55,50 @@ class ChatApp extends React.Component {
         }
       }
     });
+
+    const self = this;
+
+    this.threadChannelSubscription = App.cable.subscriptions.create({
+      channel: "ThreadChannel"
+    }, {
+      connected() {
+        this.markAsRead(self.currentThreadID());
+      },
+      received({action, id}) {
+        let { threads } = self.state;
+        const index = threads.findIndex(t => t.id === id);
+
+        if (action === "mark_as_read") {
+          threads = threads.setIn([index, "read"], true);
+        } else if (id === self.currentThreadID()) {
+          this.markAsRead(id);
+        } else {
+          threads = threads.setIn([index, "read"], false);
+        }
+
+        self.setState({threads});
+      },
+      markAsRead(id) {
+        this.perform("mark_as_read", {id});
+      }
+    });
   }
 
   componentDidUpdate() {
     if (!this.state.messagesStore.has(this.currentThreadID())) {
       this.loadMessagesForCurrentThread();
     }
+
+    const { threads } = this.state;
+    const index = threads.findIndex(t => t.id === this.currentThreadID());
+    if (index !== -1 && !threads.get(index).read) {
+      this.threadChannelSubscription.markAsRead(this.currentThreadID());
+    }
   }
 
   componentWillUnmount() {
-    App.cable.subscriptions.remove(this.subscription);
+    App.cable.subscriptions.remove(this.chatChannelSubscription);
+    App.cable.subscriptions.remove(this.threadChannelSubscription);
   }
 
   render () {
