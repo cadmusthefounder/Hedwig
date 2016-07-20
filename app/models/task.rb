@@ -17,7 +17,7 @@ class Task < ApplicationRecord
   validates :from_postal_code, length: { is: 6 }
   validates :to_address, presence: true
   validates :to_postal_code, length: { is: 6 }
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :completion_token, presence: true
 
   after_initialize do |task|
