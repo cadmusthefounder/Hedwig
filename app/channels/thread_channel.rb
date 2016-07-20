@@ -4,7 +4,6 @@ class ThreadChannel < ApplicationCable::Channel
   end
 
   def mark_as_read(data)
-    p data
     thread_id = data["id"]
     interest = Interest.find(thread_id)
 
