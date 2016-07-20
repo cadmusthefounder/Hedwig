@@ -18,9 +18,17 @@ class Interest < ApplicationRecord
     brand_new.or(assigned).or(in_progress)
   end
 
+  after_save :set_last_sent_at, unless: :last_sent_at
+
   def active?
     task.brand_new? ||
     (task.assigned? && task.assigned_user_id == user_id) ||
     (task.in_progress? && task.assigned_user_id == user_id)
+  end
+
+  protected
+
+  def set_last_sent_at
+    update(last_sent_at: created_at)
   end
 end

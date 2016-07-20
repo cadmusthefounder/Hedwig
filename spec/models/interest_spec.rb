@@ -21,6 +21,17 @@ RSpec.describe Interest, :type => :model do
     expect(@interest).to respond_to(:active?)
   end
 
+  it "should respond to last_sent_at" do
+    expect(@interest).to respond_to(:last_sent_at)
+  end
+
+  it "should set a default value for last_sent_at upon saving" do
+    user = users(:other)
+    task = tasks(:first_task)
+    interest = task.interests.create(user: user)
+    expect(interest.last_sent_at).not_to be_nil
+  end
+
   describe "accessible_by" do
     it "should return all interests accessible by the specified user" do
       user = users(:yihang)
