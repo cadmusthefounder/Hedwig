@@ -46,7 +46,15 @@ class ChatApp extends React.Component {
           let { threads } = this.state;
           const threadIndex = threads.findIndex(t => t.id === threadID);
           const thread = threads.get(threadIndex).set("last_sent_at", messages.last().created_at);
-          threads = threads.set(threadIndex, thread).sortBy(t => t.last_sent_at).reverse();
+          threads = threads.set(threadIndex, thread).sort((a, b) => {
+            if (a.last_sent_at - b.last_sent_at) {
+              return a.last_sent_at - b.last_sent_at;
+            } else if (a.created_at - b.created_at) {
+              return a.created_at - b.created_at;
+            } else {
+              return a.id - b.id;
+            }
+          }).reverse();
 
           this.setState({
             messagesStore: this.state.messagesStore.set(threadID, messages),
