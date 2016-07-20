@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :ensure_logged_in
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -26,14 +27,10 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    if @review.save
+      render 'show'
+    else
+      render 'new'
     end
   end
 
