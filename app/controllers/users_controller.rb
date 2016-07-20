@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update_attributes(user_params)
 
-    # TODO redirect to somewhere more useful
+    redirect_to root_path
   end
 
   private

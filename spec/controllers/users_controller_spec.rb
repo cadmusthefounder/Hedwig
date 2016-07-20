@@ -23,12 +23,12 @@ RSpec.describe UsersController, :type => :controller do
     cookies[:remember_token] = @yihangs_session.remember_token
 
     patch :update, params: { user: { name: "bla" } }
-    expect(response).to be_success
+    expect(response).to redirect_to(root_path)
     @yihang.reload
     expect(@yihang.name).to eq "bla"
 
     put :update, params: { user: { name: "foobar" } }
-    expect(response).to be_success
+    expect(response).to redirect_to(root_path)
     @yihang.reload
     expect(@yihang.name).to eq "foobar"
   end
