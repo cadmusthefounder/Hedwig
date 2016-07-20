@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @reviews = @user.reviews.paginate(:per_page => 5, :page => params[:page])
   end
 
   def edit
