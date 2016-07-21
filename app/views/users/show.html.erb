@@ -1,19 +1,19 @@
-<% provide(:title, current_user.name) %>
+<% provide(:title, @user.name) %>
 
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for current_user %>
-        <%= current_user.name %>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
       </h1>
     </section>
-    <%= current_user.email %>, <%= admin = "Admin status: " + current_user.admin.to_s %>
+    <%= @user.email %>, <%= admin = "Admin status: " + @user.admin.to_s %>
   </aside>
 
   <div class="col-md-8">
-    <% if current_user.reviews.any? %>
-      <h1>Reviews (<%= current_user.reviews.count %>)</h1>
+    <% if @user.reviews.any? %>
+      <h1>Reviews (<%= @user.reviews.count %>)</h1>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>
