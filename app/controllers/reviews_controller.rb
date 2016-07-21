@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :ensure_logged_in
-  before_action :set_review, only: [:show]
+  before_action :set_user
+  before_action :set_review, only: [:edit, :update, :destroy]
 
   # GET /reviews/new
   def new
@@ -12,6 +13,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.owner_id = current_user.id
+    @review.user_id = @user.id
 
     if @review.save
       render 'show'
@@ -20,12 +22,15 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def update
+  def edit
+  end
 
+  def update
   end
 
   def destroy
     @review.destroy
+    redirect_to user_path(@user)
   end
 
 
