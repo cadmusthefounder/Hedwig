@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
+    @review.owner_id = current_user.id
 
     if @review.save
       render 'show'
@@ -19,10 +20,23 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
+  def destroy
+    @review.destroy
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
