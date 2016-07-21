@@ -8,7 +8,8 @@
 <% end %>
 
 <p> Sort by </p>
-<%= sortable "name", "Name"%>
+<%= sortable "name", "Name", "ASC" %>
+<%= sortable "created_at", "Newest", "DESC" %>
 
 <ul class="users">
   <% @users.each do |user| %>

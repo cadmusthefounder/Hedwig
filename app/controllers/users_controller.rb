@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-
     sort_attribute = params[:sort] || "name"
     sort_direction = params[:direction] || "ASC"
 
