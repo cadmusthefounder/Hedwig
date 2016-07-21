@@ -4,7 +4,7 @@
   <div class="small-form">
     <h1>Edit your review </h1>
 
-    <%= form_for([@user, @review], :action => :update, :html => {:multipart => true}) do |f| %>
+    <%= form_for([@user, @review], url: edit_user_review_path(@user)) do |f| %>
       <div class="form-group">
         <%= f.label :rating %>
         <%= f.text_field :rating, class: "form-control" %>
