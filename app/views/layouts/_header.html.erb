@@ -37,6 +37,7 @@
             </ul>
           </li>
 
+          <li><%= link_to "Couriers", users_path %></li>
 
           <% if current_user.admin? %>
             <li><%= link_to "Transactions", admin_transactions_path %></li>

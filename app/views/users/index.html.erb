@@ -1,0 +1,24 @@
+<% provide(:title, "Couriers") %>
+
+<h1><%= @title %></h1>
+
+<%= form_tag users_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<p> Sort by </p>
+<%= sortable "name", "Name"%>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= gravatar_for user, size: 50 %>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate @tasks %>
+
+
