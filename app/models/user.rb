@@ -13,10 +13,16 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :account_kit_id, presence: true, uniqueness: true
 
+  accepts_nested_attributes_for :reviews
+
   def self.search(search)
     a = where('name LIKE ?', "%#{search}%")
     b = where('email LIKE ?', "%#{search}%")
     a.or(b)
+  end
+
+  def has_written_review_for(user)
+    user.review_ids.include?(self.owned_review_ids[0])
   end
 
 end

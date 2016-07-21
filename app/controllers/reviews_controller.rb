@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
     @review.user_id = @user.id
 
     if @review.save
-      render 'show'
+      redirect_to @user
     else
       render 'new'
     end
@@ -26,6 +26,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @review.update_attributes(user_params)
   end
 
   def destroy
@@ -37,7 +38,7 @@ class ReviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = Review.find(params[:id])
+      @review = @user.reviews.where(owner_id: current_user.id)
     end
 
     def set_user
