@@ -3,13 +3,10 @@ class ReviewsController < ApplicationController
   before_action :set_user
   before_action :set_review, only: [:edit, :update, :destroy]
 
-  # GET /reviews/new
   def new
     @review = Review.new
   end
 
-  # POST /reviews
-  # POST /reviews.json
   def create
     @review = Review.new(review_params)
     @review.owner_id = current_user.id
@@ -26,7 +23,11 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update_attributes(user_params)
+    if @review.update_attributes(review_params)
+      redirect_to user_path(@user)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -38,7 +39,7 @@ class ReviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = @user.reviews.where(owner_id: current_user.id)
+      @review = @user.reviews.where(owner_id: current_user.id)[0]
     end
 
     def set_user

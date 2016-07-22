@@ -13,8 +13,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    sort_attribute = "updated_at"
+    sort_direction = "DESC"
+
     @user = User.find(params[:id])
-    @reviews = @user.reviews.paginate(:per_page => 5, :page => params[:page])
+    @reviews = @user.reviews.order(sort_attribute => sort_direction)
+                            .paginate(:per_page => 5, :page => params[:page])
   end
 
   def edit
