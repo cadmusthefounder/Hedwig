@@ -6,8 +6,8 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for([@user, @review]) do |f| %>
       <div class="form-group">
-        <%= f.label :rating, "Rating" %>
-        <%= f.text_field :rating, class: "form-control" %>
+
+        <div id="star-rating"></div>
 
         <% @review.errors.full_messages_for(:rating).each do |msg| %>
           <p class="text-danger"><%= msg %></p>
@@ -28,4 +28,11 @@
     <% end %>
   </div>
 </div>
+
+<script>
+$('#star-rating').raty({
+  path: '/assets/',
+  scoreName: 'review[rating]'
+});
+</script>
 

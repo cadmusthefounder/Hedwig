@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def has_written_review_for(user)
-    user.review_ids.include?(self.owned_review_ids[0])
+    !(user.review_ids & self.owned_review_ids).empty?
   end
 
 end
