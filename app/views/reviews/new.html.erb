@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <%= f.label :comment, "Comment" %>
-        <%= f.text_area :comment, class: "form-control" %>
+        <%= f.text_field :comment, class: "form-control" %>
 
         <% @review.errors.full_messages_for(:comment).each do |msg| %>
           <p class="text-danger"><%= msg %></p>
