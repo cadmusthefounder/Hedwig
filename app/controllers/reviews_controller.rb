@@ -4,7 +4,11 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
 
   def new
-    @review = Review.new
+    if current_user.can_write_review_for(@user)
+      @review = Review.new
+    else
+      redirect_to @user
+    end
   end
 
   def create
@@ -20,6 +24,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    unless current_user.can_write_review_for(@user)
+      redirect_to @user
+    end
   end
 
   def update
@@ -38,6 +45,7 @@ class ReviewsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_review
       @review = @user.reviews.where(owner_id: current_user.id)[0]
     end

@@ -20,7 +20,11 @@ class User < ApplicationRecord
   end
 
   def has_written_review_for(user)
-    !(user.review_ids & self.owned_review_ids).empty?
+    !(self.owned_review_ids & user.review_ids).empty?
+  end
+
+  def can_write_review_for(user)
+    !self.tasks.where(status: "completed", assigned_user_id: user.id).empty?
   end
 
 end
