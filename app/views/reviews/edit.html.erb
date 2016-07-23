@@ -7,7 +7,7 @@
     <%= form_for([@user, @review]) do |f| %>
       <div class="form-group">
 
-        <div id="star-rating"></div>
+        <div id="star-rating" data-score= <%= @review.rating %>></div>
 
         <% @review.errors.full_messages_for(:rating).each do |msg| %>
           <p class="text-danger"><%= msg %></p>
@@ -30,6 +30,8 @@
 <script>
 $('#star-rating').raty({
   path: '/assets/',
-  scoreName: 'review[rating]'
+  scoreName: 'review[rating]',
+  score: function() {
+          return $(this).attr('data-score')}
 });
 </script>
