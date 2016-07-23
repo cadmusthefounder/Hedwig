@@ -6,11 +6,25 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald|Open+Sans|Ubuntu+Condensed);
 
 html {
-  height: 100%;
+  background: image-url('background.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
-  min-height: 100%;
+  padding-top: 20px;
+  background: transparent;
+}
+
+/* Override B3 .panel adding a subtly transparent background */
+.panel {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.margin-base-vertical {
+  margin: 40px 0;
 }
 
 body.chat {
@@ -29,29 +43,21 @@ body.chat {
 h1 {
   color: #123456;
   font-family: "Oswald", sans-serif;
-  font-size: 45px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 1;
-  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
 }
 
 h2 {
   color: #111;
   font-family: "Open Sans", sans-serif;
-  font-size: 30px;
-  font-weight: 300;
-  line-height: 32px;
-  margin: 00 72px;
-  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
 }
 
 p {
   color: #685206;
   font-family: "Ubuntu Condensed", sans-serif;
-  font-size: 14px;
-  line-height: 1.7em;
-  margin: 0 0 24px;
+  font-size: 20px;
   text-align: justify;
   text-justify: inter-word;
 }
