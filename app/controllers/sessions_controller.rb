@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     cookies[:remember_token] = @session.remember_token
 
     if @user.name.nil?
-      redirect_to update_profile_path
+      redirect_to edit_user_path(@user)
     else
       redirect_to root_path
     end

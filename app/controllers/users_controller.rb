@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update_attributes(user_params)
 
-    # TODO redirect to somewhere more useful
   end
 
   private

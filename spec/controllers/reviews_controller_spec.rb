@@ -19,45 +19,24 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe ReviewsController, type: :controller do
-
-  describe "GET #new" do
-    it "assigns a new review as @review" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:review)).to be_a_new(Review)
-    end
+  before(:each) do
+    @yihang = users(:yihang)
+    @other = users(:other)
+    @yihangs_session = sessions(:yihangs_session)
+    cookies[:remember_token] = @yihangs_session.remember_token
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Review" do
-        expect {
-          post :create, params: {review: valid_attributes}, session: valid_session
-        }.to change(Review, :count).by(1)
-      end
-
-      it "assigns a newly created review as @review" do
-        post :create, params: {review: valid_attributes}, session: valid_session
-        expect(assigns(:review)).to be_a(Review)
-        expect(assigns(:review)).to be_persisted
-      end
-
-      it "redirects to the created review" do
-        post :create, params: {review: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Review.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved review as @review" do
-        post :create, params: {review: invalid_attributes}, session: valid_session
-        expect(assigns(:review)).to be_a_new(Review)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {review: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
-      end
-    end
+  it "should get new" do
+    get :new, {:user_id => @yihang.id}
+    expect(response).to be_success
   end
+
+  it "should create review when all the required params are present" do
+    review_params = {rating: 3, comment: "Fast and efficient"}
+    post :create, {:user_id => @yihang.id, params: {review: review_params}}
+    expect(response).to be_success
+    expect(response).to redirect_to user_path(assigns[:yihang])
+  end
+
 
 end
