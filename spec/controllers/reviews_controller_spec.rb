@@ -27,16 +27,13 @@ RSpec.describe ReviewsController, type: :controller do
   end
 
   it "should get new" do
-    get :new, {:user_id => @yihang.id}
+    get :new, params: {user_id: @yihang.id}
     expect(response).to be_success
   end
 
   it "should create review when all the required params are present" do
     review_params = {rating: 3, comment: "Fast and efficient"}
-    post :create, {:user_id => @yihang.id, params: {review: review_params}}
-    expect(response).to be_success
-    expect(response).to redirect_to user_path(assigns[:yihang])
+    post :create, {params: {user_id: @yihang.id, review: review_params}}
+    expect(response).to redirect_to user_path(@yihang)
   end
-
-
 end

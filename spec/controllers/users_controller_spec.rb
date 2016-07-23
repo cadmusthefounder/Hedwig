@@ -9,12 +9,12 @@ RSpec.describe UsersController, :type => :controller do
 
   it "should get update_profile if logged in" do
     cookies[:remember_token] = @yihangs_session.remember_token
-    get :edit, :id => @yihang.id
+    get :edit, params: {id: @yihang.id}
     expect(response).to be_success
   end
 
   it "should not get update_profile if not logged in" do
-    get :edit
+    get :edit, params: {id: @yihang.id}
     expect(response).to redirect_to(new_session_path)
   end
 

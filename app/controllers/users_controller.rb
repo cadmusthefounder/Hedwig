@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :ensure_logged_in
-  before_action :correct_user, only: [:edit, :update]
 
   def index
     sort_attribute = params[:sort] || "name"
@@ -34,7 +33,6 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update_attributes(user_params)
-
   end
 
   private
