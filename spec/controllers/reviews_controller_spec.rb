@@ -27,7 +27,8 @@ RSpec.describe ReviewsController, type: :controller do
   end
 
   it "should get new" do
-    get :new, params: {user_id: @yihang.id}
+    @yihang.tasks.create(assigned_user_id: @other.id, status: "completed")
+    get :new, params: {user_id: @other.id}
     expect(response).to be_success
   end
 
