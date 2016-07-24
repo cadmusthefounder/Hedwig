@@ -27,9 +27,17 @@ RSpec.describe ReviewsController, type: :controller do
   end
 
   it "should get new" do
-    @yihang.tasks.create(assigned_user_id: @other.id, status: "completed")
+    @yihang.tasks.create(from_address: "Hi", from_postal_code: "123456",
+                         to_address: "Bye", to_postal_code: "123456",
+                         price: 12, assigned_user_id: @other.id, status: "completed")
     get :new, params: {user_id: @other.id}
     expect(response).to be_success
+  end
+
+  it "should not get new" do
+    @yihang.tasks.clear
+    get :new, params: {user_id: @other.id}
+    expect(response).to_not be_success
   end
 
   it "should create review when all the required params are present" do
