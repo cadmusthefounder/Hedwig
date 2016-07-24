@@ -3,6 +3,8 @@
 <h1><%= @title %></h1>
 
 <%= form_tag nil, :method => 'get' do %>
+  <%= hidden_field_tag :sort, params[:sort] if params[:sort] %>
+  <%= hidden_field_tag :direction, params[:direction] if params[:direction] %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search", :name => nil %>
 <% end %>
