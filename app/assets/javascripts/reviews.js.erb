@@ -2,6 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 $(document).on('turbolinks:load', function() {
+  $('.star-rating').raty('destroy');
   $('.star-rating').raty({
     starHalf: "<%= image_url('star-half.png') %>",
     starOff:  "<%= image_url('star-off.png') %>",
