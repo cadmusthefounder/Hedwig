@@ -12,6 +12,12 @@
 
       <% if task.assigned? || task.in_progress? %>
         <%= render 'tasks/owner_chat_button', task: task %>
+      <% elsif task.completed? %>
+        <% if current_user.has_written_review_for(task.assigned_user) %>
+          <%= render 'tasks/edit_review_button', user: task.assigned_user %>
+        <% else %>
+          <%= render 'tasks/write_review_button', user: task.assigned_user %>
+        <% end %>
       <% end %>
     <% elsif task.brand_new? %>
       <% if task.interested_users.include?(current_user) %>
