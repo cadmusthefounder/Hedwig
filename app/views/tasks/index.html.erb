@@ -2,9 +2,27 @@
 
 <h1><%= @title %></h1>
 
-<%= form_tag root_path, :method => 'get' do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => nil %>
+<% if current_page?(my_tasks_path) %>
+
+  <%= form_tag my_tasks_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+<% elsif current_page?(assigned_to_me_tasks_path) %>
+
+  <%= form_tag assigned_to_me_tasks_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+<%else %>
+
+  <%= form_tag root_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
 <% end %>
 
 <p> Sort by </p>
