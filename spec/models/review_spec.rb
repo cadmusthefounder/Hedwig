@@ -16,7 +16,7 @@ RSpec.describe Review, type: :model do
   it "comment should be present" do
     expect(@first_review).to be_valid
 
-    @first_review.rating = ""
+    @first_review.comment = ""
 
     expect(@first_review).not_to be_valid
   end
