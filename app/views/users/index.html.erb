@@ -1,0 +1,20 @@
+<% provide(:title, "Couriers") %>
+
+<h1><%= @title %></h1>
+
+<%= form_tag users_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<p> Sort by </p>
+<%= sortable "name", "Name", "ASC" %>
+<%= sortable "created_at", "Newest", "DESC" %>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate @tasks %>
+
+

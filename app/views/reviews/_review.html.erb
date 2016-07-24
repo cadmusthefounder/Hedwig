@@ -1,0 +1,18 @@
+<li id="review-<%= review.id %>">
+  <%= link_to gravatar_for(review.owner, size: 50), review.owner %>
+  <span class="owner"><%= link_to review.owner.name, review.owner %></span>
+  <span class="star-rating" data-score=<%= review.rating %>></span>
+  <span class="comment"><%= review.comment %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(review.updated_at) %> ago.
+  </span>
+</li>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function() {
+            return $(this).attr('data-score');}
+  });
+</script>

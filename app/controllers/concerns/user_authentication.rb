@@ -5,12 +5,21 @@ module UserAuthentication
     @current_user ||= current_session&.user
   end
 
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_path unless current_user?(@user)
+  end
+
   def current_session
     if cookies[:remember_token] && !@current_session
       @current_sesion = Session.find_by(remember_token: cookies[:remember_token])
     end
 
     @current_sesion
+  end
+
+  def current_user?(user)
+    user == current_user
   end
 
   def logged_in?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720035152) do
+ActiveRecord::Schema.define(version: 20160720120012) do
 
   create_table "interests", force: :cascade do |t|
     t.integer  "task_id"
@@ -27,11 +27,22 @@ ActiveRecord::Schema.define(version: 20160720035152) do
   create_table "messages", force: :cascade do |t|
     t.string   "message"
     t.integer  "user_id"
+    t.integer  "interest_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "interest_id"
     t.index ["interest_id"], name: "index_messages_on_interest_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.index ["owner_id"], name: "index_reviews_on_owner_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|

@@ -1,1 +1,33 @@
-<%= current_user.name %>, <%= current_user.email %>, <%= admin = "Admin status: " + current_user.admin.to_s %>
+<% provide(:title, @user.name) %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+        <div class="star-rating" data-score= <%= @avg_rating %> ></div>
+      </h1>
+    </section>
+    <%= @user.email %>, <%= admin = "Admin status: " + @user.admin.to_s %>
+  </aside>
+
+  <% if current_user.can_write_review_for(@user) %>
+    <% if current_user.has_written_review_for(@user) %>
+      <%= link_to "Edit review", edit_user_review_path(@user) %>
+    <% else %>
+      <%= link_to "Write a review", new_user_review_path(@user) %>
+    <% end %>
+  <% end %>
+
+  <div class="col-md-8">
+    <% if @user.reviews.any? %>
+      <h1>Reviews (<%= @user.reviews.count %>)</h1>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= will_paginate @reviews %>
+    <% end %>
+  </div>
+
+</div>

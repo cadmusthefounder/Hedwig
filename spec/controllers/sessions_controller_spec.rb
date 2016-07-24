@@ -24,7 +24,7 @@ RSpec.describe SessionsController, :type => :controller do
 
     post :create, params: {code: "myawesomecode"}
 
-    expect(response).to redirect_to(update_profile_path)
+    expect(response).to redirect_to(update_profile_path(assigns[:user]))
   end
 
   it "should delete destroy" do
