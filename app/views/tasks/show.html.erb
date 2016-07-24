@@ -24,11 +24,17 @@
   <% if @task.brand_new? %>
     <div class="interested-users">
       <ul class="list-group">
-        <% @task.interests.includes(:user).each do |interest| %>
+        <% @task.interests.includes(:user).sort_by { |interest| interest.user.average_rating }.reverse.each do |interest| %>
           <li class="list-group-item">
-            <span class="user-name">
-              <%= interest.user.name %>
-            </span>
+            <div class="user-info">
+              <span class="user-name">
+                <%= interest.user.name %>
+              </span>
+
+              <span class="star-rating"
+                    data-read-only="true"
+                    data-score="<%= interest.user.average_rating %>"></span>
+            </div>
 
             <% if @task.brand_new? %>
               <span class="assign-button">
