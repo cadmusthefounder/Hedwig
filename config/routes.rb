@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   patch '/update_profile', to: 'users#update'
   put '/update_profile', to: 'users#update'
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: :show do
     resources :reviews, except: [:show, :index]
   end
 
@@ -43,5 +43,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :transactions, only: [:index, :update]
+    resources :users, only: :index
   end
 end
