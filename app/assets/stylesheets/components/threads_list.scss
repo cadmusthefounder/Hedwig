@@ -2,7 +2,7 @@
   flex-grow: 1;
   overflow-y: scroll;
 
-  @media(min-width: 751px) {
+  @media(min-width: $screen-sm-min) {
     border-right: 1px solid gray;
   }
 
@@ -20,7 +20,7 @@
     font-weight: bold;
   }
 
-  @media(min-width: 751px) {
+  @media(min-width: $screen-sm-min) {
     .item.active {
       background-color: lighten($brand-primary, 52);
     }

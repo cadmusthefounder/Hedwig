@@ -10,7 +10,7 @@
   .master-pane {
     flex-grow: 1;
 
-    @media(min-width: 751px) {
+    @media(min-width: $screen-sm-min) {
       flex-basis: 300px;
       flex-grow: 0;
     }
@@ -22,7 +22,7 @@
     padding-right: 5px;
   }
 
-  @media(max-width: 750px) {
+  @media(max-width: $screen-xs-max) {
     &.master {
       .detail-pane {
         display: none;
