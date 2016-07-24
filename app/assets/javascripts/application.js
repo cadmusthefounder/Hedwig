@@ -20,6 +20,7 @@
 //= require immutable
 //= require react
 //= require react_ujs
+//= require raty/lib/jquery.raty.js
 //= require utils
 //= require components
 //= require models

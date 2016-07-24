@@ -6,7 +6,7 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-        <div class="star-rating" data-score="<%= @user.average_rating %>"></div>
+        <div class="star-rating" data-score="<%= @user.average_rating %>" data-read-only="true"></div>
       </h1>
     </section>
     <%= @user.email %>, <%= admin = "Admin status: " + @user.admin.to_s %>
