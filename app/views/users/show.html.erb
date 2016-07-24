@@ -14,7 +14,8 @@
 
   <% if current_user.has_written_review_for(@user) %>
     <%= link_to "Edit review", edit_user_review_path(@user) %>
-  <% else %>
+  <% end %>
+  <% else if current_user.can_write_review_for(@user) %>
     <%= link_to "Write a review", new_user_review_path(@user) %>
   <% end %>
 
