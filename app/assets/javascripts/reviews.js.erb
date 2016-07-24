@@ -3,7 +3,9 @@
 
 $(document).on('turbolinks:load', function() {
   $('.star-rating').raty({
-    path: '/assets',
+    starHalf: "<%= image_url('star-half.png') %>",
+    starOff:  "<%= image_url('star-off.png') %>",
+    starOn:   "<%= image_url('star-on.png') %>",
     readOnly: function() {
       var attr = $(this).data('read-only');
 
