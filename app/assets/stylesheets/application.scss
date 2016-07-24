@@ -3,24 +3,18 @@
 @import "bootstrap";
 @import "simplex/_bootswatch";
 @import "./**/*";
-@import url(https://fonts.googleapis.com/css?family=Oswald|Open+Sans|Ubuntu+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Lora|Open+Sans:300);
 
 html {
-  background: image-url('upfeathers.png') repeat;
   height: 100%;
 }
 
 body {
-  background: transparent;
-}
-
-/* Override B3 .panel adding a subtly transparent background */
-.panel {
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-.margin-base-vertical {
-  margin: 40px 0;
+  background-color: #F7F6F2;
+  color: darken(#F7F6F2, 70%);
+  font-family: "Helvetica Neue", "Open Sans";
+  font-weight: 200;
+  font-size: 20px;
 }
 
 body.chat {
@@ -36,26 +30,9 @@ body.chat {
   }
 }
 
-h1 {
-  color: #123456;
-  font-family: "Oswald", sans-serif;
-  font-size: 40px;
-  font-weight: 400;
-}
-
-h2 {
-  color: #111;
-  font-family: "Open Sans", sans-serif;
-  font-size: 40px;
-  font-weight: 400;
-}
-
-p {
-  color: #685206;
-  font-family: "Ubuntu Condensed", sans-serif;
-  font-size: 20px;
-  text-align: justify;
-  text-justify: inter-word;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lora", "Georgia", serif;
+  color: black;
 }
 
 .container {
