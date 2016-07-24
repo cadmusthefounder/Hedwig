@@ -61,3 +61,24 @@ h1, h2, h3, h4, h5, h6 {
 .turbolinks-progress-bar {
   background-color: $brand-primary;
 }
+
+.header-with-search {
+  @media (min-width: 768px) {
+    display: flex;
+
+    h1, h2, h3, h4, h5, h6 {
+      flex-grow: 1;
+    }
+
+    form {
+      flex-basis: 265px;
+      margin-top: 18px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    form {
+      width: 100%;
+    }
+  }
+}
