@@ -72,4 +72,29 @@ RSpec.describe User, :type => :model do
   it "should respond to transactions" do
     expect(@user).to respond_to(:transactions)
   end
+
+  it 'should respond to average_rating' do
+    expect(@user).to respond_to(:average_rating)
+  end
+
+  describe 'average rating' do
+    before(:each) do
+      @user.reviews.each(&:destroy)
+    end
+
+    it 'should be nil when there is no review' do
+      expect(@user.reviews.count).to eq 0
+      expect(@user.average_rating).to be_nil
+    end
+
+    it 'should be the average rating among all reviews' do
+      owner = users(:other)
+      @user.reviews.create!(comment: '1', rating: 1, owner: owner)
+      expect(@user.average_rating).to eq 1
+      @user.reviews.create!(comment: '3', rating: 3, owner: owner)
+      expect(@user.average_rating).to eq 2
+      @user.reviews.create!(comment: '5', rating: 5, owner: owner)
+      expect(@user.average_rating).to eq 3
+    end
+  end
 end

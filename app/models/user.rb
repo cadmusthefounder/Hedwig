@@ -27,4 +27,7 @@ class User < ApplicationRecord
     !self.tasks.where(status: "completed", assigned_user_id: user.id).empty?
   end
 
+  def average_rating
+    reviews.average(:rating)
+  end
 end
