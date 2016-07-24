@@ -11,6 +11,6 @@ class Tasks::CurrentUsersController < ApplicationController
                                .paginate(:per_page => 5, :page => params[:page])
     @tasks = @tasks.search(params[:search]) if params[:search]
 
-    render 'static_pages/home' unless logged_in? else render 'tasks/index'
+    render 'tasks/index'
   end
 end
