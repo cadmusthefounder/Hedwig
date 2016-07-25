@@ -8,23 +8,7 @@ RSpec.describe StaticPagesController, :type => :controller do
   end
 
   it "should get about" do
-    get :about
-    expect(response).to have_http_status(:success)
-  end
-
-
-  it "should get FAQ" do
-    get :faq
-    expect(response).to have_http_status(:success)
-  end
-
-  it "should get terms of use" do
-    get :terms_of_use
-    expect(response).to have_http_status(:success)
-  end
-
-  it "should get privacy policy" do
-    get :privacy_policy
+    get :help
     expect(response).to have_http_status(:success)
   end
 
