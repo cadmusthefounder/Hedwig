@@ -25,15 +25,16 @@ hr {
   max-width: 50px;
 }
 
+hr.width {
+  width: 100%;
+  max-width: none;
+}
+
 h1.italic {
   font-style: italic;
   color: #F05F40;
 }
 
-h1.italic2 {
-  font-style: italic;
-  color: #FFFFFF;
-}
 
 .card {
   h1, h2 {
@@ -51,7 +52,7 @@ h1.italic2 {
 }
 
 section {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 .section-heading {
@@ -66,17 +67,4 @@ section {
 .text-muted {
   color: #777;
 }
-
-.text-faded {
-  color: #D3D3D3;
-}
-
-.white {
-  color: #FFFFFF;
-}
-
-.bg-primary {
-  background-color: #F05F40;
-}
-
 
