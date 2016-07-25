@@ -7,6 +7,32 @@
     padding-left: 12%;
     padding-right: 12%;
   }
+  .container {
+    padding-right: 15%;
+    padding-left: 15%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+
+hr {
+  border-color: #F05F40;
+  border-width: 3px;
+  max-width: 50px;
+}
+
+h1.italic {
+  font-style: italic;
+  color: #F05F40;
+}
+
+h1.italic2 {
+  font-style: italic;
+  color: #FFFFFF;
 }
 
 .card {
@@ -23,3 +49,34 @@
     margin-top: 35px;
   }
 }
+
+section {
+  padding: 50px 0;
+}
+
+.section-heading {
+  margin-top: 0;
+}
+
+.service-box {
+  max-width: 500px;
+  margin: 50px auto 0;
+}
+
+.text-muted {
+  color: #777;
+}
+
+.text-faded {
+  color: #D3D3D3;
+}
+
+.white {
+  color: #FFFFFF;
+}
+
+.bg-primary {
+  background-color: #F05F40;
+}
+
+
