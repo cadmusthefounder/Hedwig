@@ -26,6 +26,12 @@
   .assign-button {
     padding-right: 5px;
   }
+
+  .buttons {
+    form {
+      display: inline-block;
+    }
+  }
 }
 
 @media (max-width: $screen-xs-max) {
@@ -48,6 +54,26 @@
 
     .express-interest {
       order: 2;
+      flex-grow: 1;
+      text-align: right;
+    }
+  }
+
+  .interested-users {
+    .list-group-item {
+      flex-wrap: wrap;
+    }
+
+    .user-info {
+      flex-basis: 100%;
+      display: flex;
+
+      .user-name {
+        flex-grow: 1;
+      }
+    }
+
+    .buttons {
       flex-grow: 1;
       text-align: right;
     }
