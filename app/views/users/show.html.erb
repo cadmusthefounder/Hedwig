@@ -1,33 +1,42 @@
 <% provide(:title, @user.name) %>
 
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-        <div class="star-rating" data-score="<%= @user.average_rating %>" data-read-only="true"></div>
-      </h1>
-    </section>
-    <%= @user.email %>, <%= admin = "Admin status: " + @user.admin.to_s %>
+<div class="user-profile">
+  <aside class="user-info">
+    <%= gravatar_for @user %>
+    <h1>
+      <%= @user.name %>
+      <% if @user.admin? %>
+        <span class="badge">Admin</span>
+      <% end %>
+    </h1>
+    <div class="star-rating" data-score="<%= @user.average_rating %>" data-read-only="true"></div>
   </aside>
 
-  <% if current_user.can_write_review_for(@user) %>
-    <% if current_user.has_written_review_for(@user) %>
-      <%= link_to "Edit review", edit_user_review_path(@user) %>
-    <% else %>
-      <%= link_to "Write a review", new_user_review_path(@user) %>
-    <% end %>
-  <% end %>
+  <div class="reviews-container">
 
-  <div class="col-md-8">
     <% if @user.reviews.any? %>
-      <h1>Reviews (<%= @user.reviews.count %>)</h1>
+      <header>
+        <h1>
+          Reviews (<%= @user.reviews.count %>)
+        </h1>
+
+        <% if current_user.can_write_review_for(@user) %>
+          <% if current_user.has_written_review_for(@user) %>
+            <span class="small">
+              <%= link_to "Edit review", edit_user_review_path(@user) %>
+            </span>
+          <% else %>
+            <span class="small">
+              <%= link_to "Write a review", new_user_review_path(@user) %>
+            </span>
+          <% end %>
+        <% end %>
+      </header>
+
       <ol class="reviews">
         <%= render @reviews %>
       </ol>
       <%= will_paginate @reviews %>
     <% end %>
   </div>
-
 </div>

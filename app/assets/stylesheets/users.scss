@@ -7,21 +7,12 @@
 .reviews {
   list-style: none;
   padding: 0;
-  li {
+  .review {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
-  .owner {
-    margin-top: 5em;
-    padding-top: 0;
-  }
   .comment {
-    display: block;
     margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
   }
   .timestamp {
     color: $gray-light;
@@ -36,24 +27,65 @@
   .star-rating {
     padding-bottom: 8px;
   }
-}
 
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
+  .review {
+    header {
+      display: flex;
+    }
   }
 }
 
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
+.user-profile {
+  display: flex;
+
+  .user-info {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  .reviews-container {
+    flex-basis: 0;
+    flex-grow: 2;
+
+    header {
+      display: flex;
+      align-items: baseline;
+
+      h1 {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .user-profile {
+    flex-wrap: wrap;
+
+    .user-info {
+      flex-basis: 100%;
+      text-align: center;
+    }
+
+    .reviews-container {
+      flex-basis: 100%;
+    }
+  }
+
+  .reviews {
+    .review {
+      header {
+        flex-wrap: wrap;
+
+        .owner {
+          flex-basis: 100%;
+        }
+      }
+    }
   }
 }
 
 /* Users index */
-
 .users {
   list-style: none;
   margin: 0;
