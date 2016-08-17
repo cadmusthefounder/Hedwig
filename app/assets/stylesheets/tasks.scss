@@ -27,3 +27,29 @@
     padding-right: 5px;
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .tasks-index {
+    .list-group-item {
+      flex-wrap: wrap;
+    }
+
+    .info {
+      order: 0;
+      flex-basis: 100%;
+    }
+
+    .price {
+      order: 1;
+      flex-grow: 0;
+      padding-right: 0;
+      flex-basis: auto;
+    }
+
+    .express-interest {
+      order: 2;
+      flex-grow: 1;
+      text-align: right;
+    }
+  }
+}
