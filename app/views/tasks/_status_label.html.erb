@@ -1,5 +1,9 @@
 <% if task.brand_new? %>
-  <span class="label label-info">New</span>
+  <% if task.interested_users.empty? %>
+    <span class="label label-info">New</span>
+  <% else %>
+    <span class="label label-info"><%= pluralize(task.interested_users.count, 'interested user') %></span>
+  <% end %>
 <% elsif task.assigned? %>
   <span class="label label-warning">Assigned</span>
 <% elsif task.in_progress? %>
