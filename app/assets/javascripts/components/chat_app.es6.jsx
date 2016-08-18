@@ -41,6 +41,23 @@ class ChatApp extends React.Component {
         let messages = this.state.messagesStore.get(threadID, Immutable.List());
 
         if (!messages.find(m => m.id === message.id)) {
+          if (message.user_id !== this.state.currentUser) {
+            const user = this.state.users.get(message.user_id);
+
+            let title;
+
+            if (user) {
+              title = `New Message from ${user}`;
+            } else {
+              title = "New Message";
+            }
+
+            NotificationHelpers.notify(title, {
+              body: message.message,
+              tag: threadID
+            });
+          }
+
           messages = messages.push(message).sortBy(m => m.created_at);
 
           let { threads } = this.state;
