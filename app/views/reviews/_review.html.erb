@@ -4,7 +4,7 @@
     <span class="owner h3">
       <%= link_to review.owner.name, review.owner %>
     </span>
-    <span class="star-rating" data-score="<%= review.rating %>" data-read-only="true"></span>
+    <%= static_stars(review.rating) %>
   </header>
   <p class="comment"><%= review.comment %></p>
   <p class="timestamp">

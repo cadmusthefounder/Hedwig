@@ -9,7 +9,7 @@
         <span class="badge">Admin</span>
       <% end %>
     </h1>
-    <div class="star-rating" data-score="<%= @user.average_rating %>" data-read-only="true"></div>
+    <%= static_stars(@user.average_rating) %>
   </aside>
 
   <div class="reviews-container">

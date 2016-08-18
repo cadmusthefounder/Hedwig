@@ -1,21 +1,19 @@
 <%= form_for([@user, @review]) do |f| %>
-  <div class="form-group">
-
-    <div class="star-rating"
-         data-score="<%= @review.rating %>"
-         data-name="review[rating]"></div>
-
+  <div>
     <% @review.errors.full_messages_for(:rating).each do |msg| %>
       <p class="text-danger"><%= msg %></p>
     <% end %>
 
+    <%= stars_input(name: "review[rating]", value: @review.rating) %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :comment %>
     <%= f.text_area :comment, class: "form-control" %>
 
     <% @review.errors.full_messages_for(:comment).each do |msg| %>
       <p class="text-danger"><%= msg %></p>
     <% end %>
-
   </div>
 
   <%= f.submit "Save", class: "btn btn-primary" %>

@@ -11,7 +11,7 @@ RSpec.describe "reviews/new", type: :view do
     render
 
     assert_select "form[action=?][method=?]", user_reviews_path(user_id: @user.id), "post" do
-      assert_select ".star-rating"
+      assert_select ".stars-input"
       assert_select "textarea#review_comment[name=?]", "review[comment]"
     end
   end

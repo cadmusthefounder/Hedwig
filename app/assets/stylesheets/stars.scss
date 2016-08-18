@@ -1,0 +1,50 @@
+.stars {
+  color: gold;
+
+  .glyphicon {
+    display: inline-block;
+    margin-right: 2px;
+  }
+
+  .glyphicon:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.stars-input {
+  color: gold;
+  direction: rtl;
+  text-align: left;
+
+  .stars-container {
+    input {
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+      display: inline-block;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    label:first-of-type {
+      padding-left: 0;
+    }
+
+    label:last-of-type {
+      padding-right: 0;
+    }
+
+    input + label > .glyphicon::before,
+    &:hover input:checked ~ label > .glyphicon::before {
+      content: "\e007";
+    }
+
+    input:checked ~ label > .glyphicon::before,
+    &:hover input + label:hover > .glyphicon::before,
+    &:hover input + label:hover ~ label > .glyphicon::before {
+      content: "\e006";
+    }
+  }
+}
