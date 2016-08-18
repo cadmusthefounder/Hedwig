@@ -121,7 +121,6 @@ GEM
       railties (= 5.0.0)
       sprockets-rails (>= 2.0.0)
     rails-assets-immutable (3.8.1)
-    rails-assets-raty (2.7.0)
     rails-controller-testing (0.1.1)
       actionpack (~> 5.x)
       actionview (~> 5.x)
@@ -239,7 +238,6 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (= 5.0.0)
   rails-assets-immutable (~> 3.8.1)!
-  rails-assets-raty (~> 2.7.0)!
   rails-controller-testing (~> 0.1.1)
   rails_12factor
   react-rails (~> 1.8)

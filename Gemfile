@@ -62,5 +62,4 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-immutable', '~> 3.8.1'
-  gem 'rails-assets-raty', '~> 2.7.0'
 end

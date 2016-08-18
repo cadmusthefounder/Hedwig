@@ -1,26 +1,2 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-
-$(document).on('turbolinks:load', function() {
-  $('.star-rating').raty('destroy');
-  $('.star-rating').raty({
-    starHalf: "<%= image_url('star-half.png') %>",
-    starOff:  "<%= image_url('star-off.png') %>",
-    starOn:   "<%= image_url('star-on.png') %>",
-    readOnly: function() {
-      var attr = $(this).data('read-only');
-
-      if (attr === undefined) {
-        return false;
-      } else {
-        return !!attr;
-      }
-    },
-    scoreName: function() {
-      return $(this).data('name');
-    },
-    score: function() {
-      return $(this).data('score');
-    }
-  });
-});
