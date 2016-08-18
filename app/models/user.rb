@@ -28,6 +28,6 @@ class User < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)
+    reviews.average(:rating) || 0
   end
 end

@@ -82,9 +82,9 @@ RSpec.describe User, :type => :model do
       @user.reviews.each(&:destroy)
     end
 
-    it 'should be nil when there is no review' do
+    it 'should be 0 when there is no review' do
       expect(@user.reviews.count).to eq 0
-      expect(@user.average_rating).to be_nil
+      expect(@user.average_rating).to eq 0
     end
 
     it 'should be the average rating among all reviews' do
