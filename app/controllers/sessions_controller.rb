@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     email = me["email"]["address"]
     account_kit_id = me["id"]
 
-    @user = User.find_by(account_kit_id: account_kit_id)
+    @user = User.find_by(email: email)
     unless @user
       @user = User.create(email: email, account_kit_id: account_kit_id)
     end

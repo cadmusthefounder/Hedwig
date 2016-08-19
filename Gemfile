@@ -33,6 +33,8 @@ gem 'react-rails', '~> 1.8'
 
 gem 'simplecov', :require => false, :group => :test
 
+gem 'faker', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
